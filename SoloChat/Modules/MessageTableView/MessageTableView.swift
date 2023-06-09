@@ -19,7 +19,9 @@ final class MessageTableView: UITableView {
 		backgroundColor = .white
 		transform = CGAffineTransform(scaleX: 1, y: -1)
 		separatorStyle = UITableViewCell.SeparatorStyle.none
-		register(MessageCell.self, forCellReuseIdentifier: MessageCell.identifier)
+		register(UINib(nibName: MessageCell.identifier, bundle: nil),
+				 forCellReuseIdentifier: MessageCell.identifier)
+//		register(MessageCell.self, forCellReuseIdentifier: MessageCell.identifier)
 		translatesAutoresizingMaskIntoConstraints = false
 		
 	}
@@ -33,7 +35,7 @@ final class MessageTableView: UITableView {
 
 extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
 	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 10 }
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 3 }
 	
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { frame.height / 6.5 }
@@ -41,7 +43,7 @@ extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.identifier) as! MessageCell
 		cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
-		cell.backgroundColor = (indexPath.row % 2 == 0) ? #colorLiteral(red: 0.1169841662, green: 0.09732844681, blue: 0.08903429657, alpha: 1).withAlphaComponent(0.3) : .none
+		cell.messageLabel.text = "Cell Number: \(indexPath.row)"
 		return cell
 	}
 	
