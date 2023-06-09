@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+/*
+struct Cell
+ 
+var id: Int
+var message: String
+var time: String
+var image: UIImage
+ 
+*/
+

@@ -16,6 +16,7 @@ final class MessageCell: UITableViewCell {
 	private let cellImage: UIImageView = {
 		let image = UIImageView()
 		image.contentMode = .scaleAspectFill
+		image.layer.masksToBounds = true
 		image.transform = CGAffineTransform(scaleX: 1, y: -1)
 		image.translatesAutoresizingMaskIntoConstraints = false
 		return image
@@ -31,6 +32,17 @@ final class MessageCell: UITableViewCell {
 		return label
 	}()
 	
+	let timeLabel: UILabel = {
+		let label = UILabel()
+		label.text = "00:00"
+		label.textColor = .black
+		label.tintColor = .black
+		label.font = label.font.withSize(15)
+		label.transform = CGAffineTransform(scaleX: 1, y: -1)
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
+	}()
+	
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .default, reuseIdentifier: MessageCell.identifier)
@@ -39,23 +51,29 @@ final class MessageCell: UITableViewCell {
 	
 	override func prepareForReuse() {
 		super.prepareForReuse()
+		cellImage.image = nil
 		activityIndicator.startAnimating()
+		loadImage()
 	}
 	
 	private func setupBinding() {
+		backgroundColor = .white
 		activityIndicator.startAnimating()
-//		loadImage()
+		loadImage()
 		addSubviews()
 		setupConstraints()
 	}
 	
 	private func loadImage() {
 		ImageLoader.loadImageFromURL { [weak self] result in
+			guard let self = self else { return }
 			switch result {
 			case .success(let image):
 				DispatchQueue.main.async {
-					self?.cellImage.image = image
-					self?.activityIndicator.stopAnimating()
+					self.cellImage.image = image
+//					self.cellImage.layer.cornerRadius = self.cellImage.frame.size.width / 2
+					self.cellImage.layer.cornerRadius = self.cellImage.frame.size.height / 2
+					self.activityIndicator.stopAnimating()
 				}
 			case .failure(_):
 				break ;
@@ -67,14 +85,15 @@ final class MessageCell: UITableViewCell {
 		addSubview(cellImage)
 		cellImage.addSubview(activityIndicator)
 		addSubview(messageLabel)
+		addSubview(timeLabel)
 	}
 	
 	private func setupConstraints() {
 		NSLayoutConstraint.activate([
 			cellImage.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-			cellImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+			cellImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
 			cellImage.widthAnchor.constraint(equalToConstant: 100),
-			cellImage.bottomAnchor.constraint(equalTo: bottomAnchor)
+			cellImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
 		])
 		
 		NSLayoutConstraint.activate([
@@ -82,6 +101,11 @@ final class MessageCell: UITableViewCell {
 			messageLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 30),
 			messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
 			messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+		])
+		
+		NSLayoutConstraint.activate([
+			timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+			timeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
 		])
 	}
 	

@@ -16,12 +16,23 @@ final class MainViewController: UIViewController {
 	
 	private let textField: UITextField
 	
+	private let testTaskLabel: UILabel = {
+		let label = UILabel()
+		label.text = "Тестовое Задание"
+		label.textColor = .black
+		label.tintColor = .black
+		label.font = label.font.withSize(22)
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
+	}()
+	
 	private lazy var tableView = coordinator.getTableView(frame: view.frame, style: .plain)
 	
-	private var messages = ["Test",
-							"Lorem Ipsum",
-							"One, Two, Three"]
+//	private var messages = ["Test",
+//							"Lorem Ipsum",
+//							"One, Two, Three"]
 	
+	private var messages = [String]()
 	
 	
 	init(coordinator: Coordinator) {
@@ -55,6 +66,8 @@ final class MainViewController: UIViewController {
 extension MainViewController {
 	// MARK: Private Methods
 	private func setupBinding() {
+		navigationController?.navigationBar.isHidden = true
+		
 		title = "Тестовое Задание"
 		view.backgroundColor = .white
 		textField.delegate = self
@@ -62,6 +75,7 @@ extension MainViewController {
 	}
 	
 	private func addSubviews() {
+		view.addSubview(testTaskLabel)
 		view.addSubview(textField)
 		view.addSubview(tableView)
 		// При нажатии на любую часть экрана TextField скрывается
@@ -70,6 +84,11 @@ extension MainViewController {
 	
 	private func setupConstraints() {
 		NSLayoutConstraint.activate([
+			testTaskLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			testTaskLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+		])
+		
+		NSLayoutConstraint.activate([
 			textField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
 			textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 			textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -77,7 +96,7 @@ extension MainViewController {
 		])
 		
 		NSLayoutConstraint.activate([
-			tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			tableView.topAnchor.constraint(equalTo: testTaskLabel.bottomAnchor),
 			tableView.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -10),
 			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -108,6 +127,7 @@ extension MainViewController {
 		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
 			let keyboardHeight = keyboardFrame.cgRectValue.height
 			view.frame.origin.y -= keyboardHeight
+			print(view.frame.origin.y, keyboardHeight)
 		}
 	}
 	
@@ -123,7 +143,7 @@ extension MainViewController: UITextFieldDelegate {
 	// Проверяем что написали в TextField
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		if let text = textField.text, !text.isEmpty {
-			messages.append(text)
+			messages.append(text) // Тут будет в Realm добавляься message + time
 			tableView.messages = messages
 			tableView.reloadData()
 			debugPrint(text, messages.count)
