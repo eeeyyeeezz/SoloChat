@@ -9,6 +9,8 @@ import UIKit
 
 final class MessageTableView: UITableView {
 	
+	var messages = [String]()
+	
 	// private let realm: Realm
 	
 	override init(frame: CGRect, style: UITableView.Style) {
@@ -17,11 +19,9 @@ final class MessageTableView: UITableView {
 		delegate = self
 		dataSource = self
 		backgroundColor = .white
-		transform = CGAffineTransform(scaleX: 1, y: -1)
+		transform = CGAffineTransformMakeScale(1, -1)
 		separatorStyle = UITableViewCell.SeparatorStyle.none
-		register(UINib(nibName: MessageCell.identifier, bundle: nil),
-				 forCellReuseIdentifier: MessageCell.identifier)
-//		register(MessageCell.self, forCellReuseIdentifier: MessageCell.identifier)
+		register(MessageCell.self, forCellReuseIdentifier: MessageCell.identifier)
 		translatesAutoresizingMaskIntoConstraints = false
 		
 	}
@@ -35,15 +35,14 @@ final class MessageTableView: UITableView {
 
 extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
 	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 3 }
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { messages.count }
 	
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { frame.height / 6.5 }
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.identifier) as! MessageCell
-		cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
-		cell.messageLabel.text = "Cell Number: \(indexPath.row)"
+		cell.messageLabel.text = "\(indexPath.row): \(messages[indexPath.row])"
 		return cell
 	}
 	

@@ -18,11 +18,15 @@ final class MainViewController: UIViewController {
 	
 	private lazy var tableView = coordinator.getTableView(frame: view.frame, style: .plain)
 	
+	private var messages = ["Test",
+							"Lorem Ipsum",
+							"One, Two, Three"]
+	
+	
+	
 	init(coordinator: Coordinator) {
 		self.coordinator = coordinator
 		textField = coordinator.getTextField()
-//		textField = MessageTextField()
-//		tableView = MessageTableView()
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -54,6 +58,7 @@ extension MainViewController {
 		title = "Тестовое Задание"
 		view.backgroundColor = .white
 		textField.delegate = self
+		tableView.messages = messages
 	}
 	
 	private func addSubviews() {
@@ -118,7 +123,10 @@ extension MainViewController: UITextFieldDelegate {
 	// Проверяем что написали в TextField
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		if let text = textField.text, !text.isEmpty {
-			debugPrint(text)
+			messages.append(text)
+			tableView.messages = messages
+			tableView.reloadData()
+			debugPrint(text, messages.count)
 		}
 		textField.text = nil
 		return true
