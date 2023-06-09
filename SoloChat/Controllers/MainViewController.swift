@@ -13,7 +13,7 @@ final class MainViewController: UIViewController {
 	private let textField: MessageTextField
 	
 	init() {
-		textField = MessageTextField(placeholder: "Write your message")
+		textField = MessageTextField()
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -24,6 +24,10 @@ final class MainViewController: UIViewController {
 	// MARK: Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setupViewController()
+	}
+	
+	private func setupViewController() {
 		setupBinding()
 		addSubviews()
 		setupConstraints()
@@ -39,6 +43,7 @@ extension MainViewController {
 	// MARK: Private Methods
 	private func setupBinding() {
 		title = "Тестовое Задание"
+		textField.delegate = self
 		view.backgroundColor = .white
 	}
 	
@@ -50,7 +55,7 @@ extension MainViewController {
 	
 	private func setupConstraints() {
 		NSLayoutConstraint.activate([
-			textField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+			textField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
 			textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 			textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 			textField.heightAnchor.constraint(equalToConstant: 60)
@@ -86,6 +91,20 @@ extension MainViewController {
 	
 	@objc private func keyboardWillHide() {
 		view.frame.origin.y = 0
+	}
+}
+
+
+extension MainViewController: UITextFieldDelegate {
+	
+	// Проверяем что написали в TextField
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		if let text = textField.text {
+			debugPrint(text)
+		}
+		textField.text = nil
+//		textField.resignFirstResponder()
+		return true
 	}
 }
 
