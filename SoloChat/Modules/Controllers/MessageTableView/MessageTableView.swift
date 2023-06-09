@@ -35,22 +35,27 @@ final class MessageTableView: UITableView {
 
 extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
 	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { messages.count }
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		RealmHelper.getAllRealmObjects().count
+	}
 	
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { frame.height / 6.5 }
 	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		debugPrint("DIDSELECT", indexPath.row)
+	}
+
+	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.identifier) as! MessageCell
-		cell.messageLabel.text = "\(indexPath.row): \(messages[indexPath.row])"
-		// TIME
-		let today = Date()
-		let hours = (Calendar.current.component(.hour, from: today))
-		let minutes = (Calendar.current.component(.minute, from: today))
-		cell.timeLabel.text = "\(hours):\(minutes)"
+		let message = RealmHelper.getRealmObject(by: indexPath.row, messageEnum: .message)
+		let time = RealmHelper.getRealmObject(by: indexPath.row, messageEnum: .time)
+		
+		cell.messageLabel.text = message as? String
+		cell.timeLabel.text = time as? String
 		
 		animator.animate(cell: cell, at: indexPath, in: tableView)
-		
 		return cell
 	}
 	

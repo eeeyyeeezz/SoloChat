@@ -16,6 +16,8 @@ final class MainViewController: UIViewController {
 	
 	private let textField: UITextField
 	
+	private lazy var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+	
 	private let testTaskLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Тестовое Задание"
@@ -26,14 +28,16 @@ final class MainViewController: UIViewController {
 		return label
 	}()
 	
+	private lazy var debugDeleteButton: UIButton = {
+		let button = UIButton(frame: CGRect(x: 20, y: 30, width: 50, height: 50))
+		button.layer.cornerRadius = 20
+		button.addTarget(self, action: #selector(debugButtonDeleteAll), for: .touchUpInside)
+		button.setTitle("DEL", for: .normal)
+		button.backgroundColor = .red
+		return button
+	}()
+	
 	private lazy var tableView = coordinator.getTableView(frame: view.frame, style: .plain)
-	
-//	private var messages = ["Test",
-//							"Lorem Ipsum",
-//							"One, Two, Three"]
-	
-	private var messages = [String]()
-	
 	
 	init(coordinator: Coordinator) {
 		self.coordinator = coordinator
@@ -71,15 +75,17 @@ extension MainViewController {
 		title = "Тестовое Задание"
 		view.backgroundColor = .white
 		textField.delegate = self
-		tableView.messages = messages
 	}
 	
 	private func addSubviews() {
+		view.addSubview(debugDeleteButton)
 		view.addSubview(testTaskLabel)
 		view.addSubview(textField)
 		view.addSubview(tableView)
 		// При нажатии на любую часть экрана TextField скрывается
-		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+		tapGestureRecognizer.cancelsTouchesInView = false
+		view.addGestureRecognizer(tapGestureRecognizer)
+		
 	}
 	
 	private func setupConstraints() {
@@ -134,23 +140,26 @@ extension MainViewController {
 	@objc private func keyboardWillHide() {
 		view.frame.origin.y = 0
 	}
+	
+	@objc func debugButtonDeleteAll() {
+		RealmHelper.deleteAllModels()
+		tableView.reloadData()
+	}
 }
 
 
 // MARK: UITextFieldDelegates
 extension MainViewController: UITextFieldDelegate {
 	
-//	let today = Date()
-//	let hours = (Calendar.current.component(.hour, from: today))
-//	let minutes = (Calendar.current.component(.minute, from: today))
 	
 	// Проверяем что написали в TextField
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		if let text = textField.text, !text.isEmpty {
-			messages.append(text) // Тут будет в Realm добавляься message + time
-			tableView.messages = messages
+			let today = Date()
+			let hours = (Calendar.current.component(.hour, from: today))
+			let minutes = (Calendar.current.component(.minute, from: today))
+			RealmHelper.pushToRealm(message: text, time: "\(hours):\(minutes)")
 			tableView.reloadData()
-			debugPrint(text, messages.count)
 		}
 		textField.text = nil
 		return true
