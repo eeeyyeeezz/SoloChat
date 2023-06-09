@@ -9,19 +9,21 @@
 /* Begin PBXBuildFile section */
 		4E18590F2A32E2CF002BF48C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E18590E2A32E2CF002BF48C /* AppDelegate.swift */; };
 		4E1859112A32E2CF002BF48C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1859102A32E2CF002BF48C /* SceneDelegate.swift */; };
-		4E1859132A32E2CF002BF48C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1859122A32E2CF002BF48C /* ViewController.swift */; };
+		4E1859132A32E2CF002BF48C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1859122A32E2CF002BF48C /* MainViewController.swift */; };
 		4E1859182A32E2CF002BF48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E1859172A32E2CF002BF48C /* Assets.xcassets */; };
 		4E18591B2A32E2CF002BF48C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E1859192A32E2CF002BF48C /* LaunchScreen.storyboard */; };
+		4E1859252A32E6B7002BF48C /* MessageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1859242A32E6B7002BF48C /* MessageTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4E18590B2A32E2CF002BF48C /* SoloChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoloChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E18590E2A32E2CF002BF48C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E1859102A32E2CF002BF48C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4E1859122A32E2CF002BF48C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4E1859122A32E2CF002BF48C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4E1859172A32E2CF002BF48C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E18591A2A32E2CF002BF48C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E18591C2A32E2CF002BF48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E1859242A32E6B7002BF48C /* MessageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +77,8 @@
 		4E1859232A32E385002BF48C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4E1859122A32E2CF002BF48C /* ViewController.swift */,
+				4E1859122A32E2CF002BF48C /* MainViewController.swift */,
+				4E1859242A32E6B7002BF48C /* MessageTextField.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -150,9 +153,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E1859132A32E2CF002BF48C /* ViewController.swift in Sources */,
+				4E1859132A32E2CF002BF48C /* MainViewController.swift in Sources */,
 				4E18590F2A32E2CF002BF48C /* AppDelegate.swift in Sources */,
 				4E1859112A32E2CF002BF48C /* SceneDelegate.swift in Sources */,
+				4E1859252A32E6B7002BF48C /* MessageTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,12 +295,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TTGBN2B7N7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoloChat/Core/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,12 +323,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TTGBN2B7N7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoloChat/Core/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
