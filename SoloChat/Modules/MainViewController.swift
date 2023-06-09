@@ -10,10 +10,19 @@ import UIKit
 // MARK: ViewController 
 final class MainViewController: UIViewController {
 
-	private let textField: MessageTextField
+	// MARK: Private Properties
 	
-	init() {
-		textField = MessageTextField()
+	private let coordinator: Coordinator
+	
+	private let textField: UITextField
+	
+	private lazy var tableView = coordinator.getTableView(frame: view.frame, style: .plain)
+	
+	init(coordinator: Coordinator) {
+		self.coordinator = coordinator
+		textField = coordinator.getTextField()
+//		textField = MessageTextField()
+//		tableView = MessageTableView()
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -43,12 +52,13 @@ extension MainViewController {
 	// MARK: Private Methods
 	private func setupBinding() {
 		title = "Тестовое Задание"
-		textField.delegate = self
 		view.backgroundColor = .white
+		textField.delegate = self
 	}
 	
 	private func addSubviews() {
 		view.addSubview(textField)
+		view.addSubview(tableView)
 		// При нажатии на любую часть экрана TextField скрывается
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
 	}
@@ -58,7 +68,14 @@ extension MainViewController {
 			textField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
 			textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 			textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-			textField.heightAnchor.constraint(equalToConstant: 60)
+			textField.heightAnchor.constraint(equalToConstant: 50)
+		])
+		
+		NSLayoutConstraint.activate([
+			tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			tableView.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -10),
+			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 		])
 	}
 	
@@ -95,16 +112,15 @@ extension MainViewController {
 }
 
 
+// MARK: UITextFieldDelegates
 extension MainViewController: UITextFieldDelegate {
 	
 	// Проверяем что написали в TextField
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		if let text = textField.text {
+		if let text = textField.text, !text.isEmpty {
 			debugPrint(text)
 		}
 		textField.text = nil
-//		textField.resignFirstResponder()
 		return true
 	}
 }
-

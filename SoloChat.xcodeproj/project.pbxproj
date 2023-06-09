@@ -13,6 +13,9 @@
 		4E1859182A32E2CF002BF48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E1859172A32E2CF002BF48C /* Assets.xcassets */; };
 		4E18591B2A32E2CF002BF48C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E1859192A32E2CF002BF48C /* LaunchScreen.storyboard */; };
 		4E1859252A32E6B7002BF48C /* MessageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1859242A32E6B7002BF48C /* MessageTextField.swift */; };
+		4E365A4B2A32FAD20026D299 /* MessageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E365A4A2A32FAD20026D299 /* MessageTableView.swift */; };
+		4E365A4D2A32FB880026D299 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E365A4C2A32FB880026D299 /* Coordinator.swift */; };
+		4E365A502A32FF6F0026D299 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E365A4F2A32FF6F0026D299 /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		4E18591A2A32E2CF002BF48C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E18591C2A32E2CF002BF48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E1859242A32E6B7002BF48C /* MessageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextField.swift; sourceTree = "<group>"; };
+		4E365A4A2A32FAD20026D299 /* MessageTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableView.swift; sourceTree = "<group>"; };
+		4E365A4C2A32FB880026D299 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4E365A4F2A32FF6F0026D299 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				4E1859222A32E36A002BF48C /* Core */,
-				4E1859232A32E385002BF48C /* Controllers */,
+				4E1859232A32E385002BF48C /* Modules */,
 			);
 			path = SoloChat;
 			sourceTree = "<group>";
@@ -74,13 +80,32 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		4E1859232A32E385002BF48C /* Controllers */ = {
+		4E1859232A32E385002BF48C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4E365A4E2A32FB8B0026D299 /* Model */,
 				4E1859122A32E2CF002BF48C /* MainViewController.swift */,
+				4E365A512A32FF950026D299 /* MessageTableView */,
 				4E1859242A32E6B7002BF48C /* MessageTextField.swift */,
 			);
-			path = Controllers;
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4E365A4E2A32FB8B0026D299 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E365A4C2A32FB880026D299 /* Coordinator.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4E365A512A32FF950026D299 /* MessageTableView */ = {
+			isa = PBXGroup;
+			children = (
+				4E365A4A2A32FAD20026D299 /* MessageTableView.swift */,
+				4E365A4F2A32FF6F0026D299 /* MessageCell.swift */,
+			);
+			path = MessageTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,8 +180,11 @@
 			files = (
 				4E1859132A32E2CF002BF48C /* MainViewController.swift in Sources */,
 				4E18590F2A32E2CF002BF48C /* AppDelegate.swift in Sources */,
+				4E365A4D2A32FB880026D299 /* Coordinator.swift in Sources */,
+				4E365A4B2A32FAD20026D299 /* MessageTableView.swift in Sources */,
 				4E1859112A32E2CF002BF48C /* SceneDelegate.swift in Sources */,
 				4E1859252A32E6B7002BF48C /* MessageTextField.swift in Sources */,
+				4E365A502A32FF6F0026D299 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
