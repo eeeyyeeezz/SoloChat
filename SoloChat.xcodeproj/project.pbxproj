@@ -18,6 +18,8 @@
 		4E365A502A32FF6F0026D299 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E365A4F2A32FF6F0026D299 /* MessageCell.swift */; };
 		4E365A552A3308400026D299 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E365A542A3308400026D299 /* RealmHelper.swift */; };
 		4E365A572A3310E00026D299 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E365A562A3310E00026D299 /* ImageLoader.swift */; };
+		4E365A5B2A3330DA0026D299 /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E365A5A2A3330DA0026D299 /* AnimationHelper.swift */; };
+		4E365A5D2A3337F20026D299 /* DownloadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E365A5C2A3337F20026D299 /* DownloadResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		4E365A4F2A32FF6F0026D299 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		4E365A542A3308400026D299 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		4E365A562A3310E00026D299 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		4E365A5A2A3330DA0026D299 /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
+		4E365A5C2A3337F20026D299 /* DownloadResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				4E365A4E2A32FB8B0026D299 /* Model */,
-				4E1859122A32E2CF002BF48C /* MainViewController.swift */,
-				4E1859242A32E6B7002BF48C /* MessageTextField.swift */,
-				4E365A512A32FF950026D299 /* MessageTableView */,
+				4E365A5E2A3338020026D299 /* Controllers */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -101,6 +103,8 @@
 				4E365A4C2A32FB880026D299 /* Coordinator.swift */,
 				4E365A542A3308400026D299 /* RealmHelper.swift */,
 				4E365A562A3310E00026D299 /* ImageLoader.swift */,
+				4E365A5A2A3330DA0026D299 /* AnimationHelper.swift */,
+				4E365A5C2A3337F20026D299 /* DownloadResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -112,6 +116,16 @@
 				4E365A4F2A32FF6F0026D299 /* MessageCell.swift */,
 			);
 			path = MessageTableView;
+			sourceTree = "<group>";
+		};
+		4E365A5E2A3338020026D299 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4E1859122A32E2CF002BF48C /* MainViewController.swift */,
+				4E1859242A32E6B7002BF48C /* MessageTextField.swift */,
+				4E365A512A32FF950026D299 /* MessageTableView */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,8 +198,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E365A5D2A3337F20026D299 /* DownloadResult.swift in Sources */,
 				4E1859132A32E2CF002BF48C /* MainViewController.swift in Sources */,
 				4E18590F2A32E2CF002BF48C /* AppDelegate.swift in Sources */,
+				4E365A5B2A3330DA0026D299 /* AnimationHelper.swift in Sources */,
 				4E365A4D2A32FB880026D299 /* Coordinator.swift in Sources */,
 				4E365A4B2A32FAD20026D299 /* MessageTableView.swift in Sources */,
 				4E1859112A32E2CF002BF48C /* SceneDelegate.swift in Sources */,

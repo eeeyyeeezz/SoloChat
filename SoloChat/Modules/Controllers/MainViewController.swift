@@ -140,6 +140,10 @@ extension MainViewController {
 // MARK: UITextFieldDelegates
 extension MainViewController: UITextFieldDelegate {
 	
+//	let today = Date()
+//	let hours = (Calendar.current.component(.hour, from: today))
+//	let minutes = (Calendar.current.component(.minute, from: today))
+	
 	// Проверяем что написали в TextField
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		if let text = textField.text, !text.isEmpty {

@@ -105,7 +105,7 @@ final class MessageCell: UITableViewCell {
 		
 		NSLayoutConstraint.activate([
 			timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-			timeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+			timeLabel.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -50)
 		])
 	}
 	

@@ -30,4 +30,10 @@ class MainCoordinator: Coordinator {
 		return tableView
 	}
 	
+	func getAnimator() -> Animator {
+		let animation = AnimationFactory.makeFadeAnimation(duration: 0.5, delayFactor: 0.05)
+		let animator = Animator(animation: animation)
+		return animator
+	}
+	
 }

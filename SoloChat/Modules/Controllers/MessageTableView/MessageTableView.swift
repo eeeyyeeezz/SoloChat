@@ -9,12 +9,12 @@ import UIKit
 
 final class MessageTableView: UITableView {
 	
+	let animation = AnimationFactory.makeFadeAnimation(duration: 0.5, delayFactor: 0.05)
+	lazy var animator = Animator(animation: animation)
+	
 	var messages = [String]()
 	
-	// private let realm: Realm
-	
 	override init(frame: CGRect, style: UITableView.Style) {
-		// realm = try! Realm()
 		super.init(frame: frame, style: style)
 		delegate = self
 		dataSource = self
@@ -43,7 +43,16 @@ extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.identifier) as! MessageCell
 		cell.messageLabel.text = "\(indexPath.row): \(messages[indexPath.row])"
+		// TIME
+		let today = Date()
+		let hours = (Calendar.current.component(.hour, from: today))
+		let minutes = (Calendar.current.component(.minute, from: today))
+		cell.timeLabel.text = "\(hours):\(minutes)"
+		
+		animator.animate(cell: cell, at: indexPath, in: tableView)
+		
 		return cell
 	}
+	
 	
 }
