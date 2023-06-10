@@ -28,6 +28,8 @@
 		4E9E5BD12A3452B300FFC37B /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD02A3452B300FFC37B /* Constraints.swift */; };
 		4E9E5BD32A34656900FFC37B /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD22A34656900FFC37B /* KeyboardManager.swift */; };
 		4E9E5BD62A34832E00FFC37B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD52A34832E00FFC37B /* Extensions.swift */; };
+		4E9E5BD82A3493FE00FFC37B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD72A3493FE00FFC37B /* Constants.swift */; };
+		4E9E5BDA2A34A8E600FFC37B /* LightModeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD92A34A8E600FFC37B /* LightModeEnum.swift */; };
 		8135F88008303499C5CE73F0 /* Pods_SoloChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093D479080BEF64026EEE576 /* Pods_SoloChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		4E9E5BD02A3452B300FFC37B /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		4E9E5BD22A34656900FFC37B /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		4E9E5BD52A34832E00FFC37B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4E9E5BD72A3493FE00FFC37B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4E9E5BD92A34A8E600FFC37B /* LightModeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightModeEnum.swift; sourceTree = "<group>"; };
 		768935A9FC5A3EA5F4F255C0 /* Pods-SoloChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoloChat.release.xcconfig"; path = "Target Support Files/Pods-SoloChat/Pods-SoloChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +133,8 @@
 				4E365A4C2A32FB880026D299 /* Coordinator.swift */,
 				4E365A5A2A3330DA0026D299 /* AnimationHelper.swift */,
 				4E9E5BD52A34832E00FFC37B /* Extensions.swift */,
+				4E9E5BD72A3493FE00FFC37B /* Constants.swift */,
+				4E9E5BD92A34A8E600FFC37B /* LightModeEnum.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,6 +351,8 @@
 				4E1859112A32E2CF002BF48C /* SceneDelegate.swift in Sources */,
 				4E9E5BC12A3341F200FFC37B /* MessageModel.swift in Sources */,
 				4E365A572A3310E00026D299 /* NetworkManager.swift in Sources */,
+				4E9E5BDA2A34A8E600FFC37B /* LightModeEnum.swift in Sources */,
+				4E9E5BD82A3493FE00FFC37B /* Constants.swift in Sources */,
 				4E365A552A3308400026D299 /* RealmHelper.swift in Sources */,
 				4E9E5BCC2A33614600FFC37B /* MessageStruct.swift in Sources */,
 				4E1859252A32E6B7002BF48C /* MessageTextField.swift in Sources */,

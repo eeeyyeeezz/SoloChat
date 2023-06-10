@@ -75,6 +75,29 @@ class RealmHelper {
 		}
 	}
 	
+	/// Удалить объект по id и сместить остальные id
+	static func deleteModelById(by id: Int) {
+		let realm = try! Realm()
+		let realmObjects = RealmHelper.getAllRealmObjects()
+		let objectsToDelete = realmObjects.filter("id == %@", id)
+		objectsToDelete.forEach {
+			print("TEST DELETE \(id) REALMID \($0.id) MESSAGE \($0.message)")
+		}
+		
+		try? realm.write {
+			realm.delete(objectsToDelete)
+		}
+//
+//		let objectsToShift = RealmHelper.getAllRealmObjects().filter("id > 0 && id != %@", id)//.reversed()
+//
+//		try? realm.write {
+//			for object in objectsToShift {
+//				object.id -= 1
+//			}
+//		}
+			
+	}
+	
 	static func deleteAllModels() {
 		let realm = try! Realm()
 		try! realm.write {

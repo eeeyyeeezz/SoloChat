@@ -7,11 +7,13 @@
 
 import UIKit
 
-// MARK: ViewController 
+// MARK: MainViewController
 final class MainViewController: UIViewController {
 
 	// MARK: Properties
 	var textFieldBottomConstraint: NSLayoutConstraint
+	
+	var testLabelTopConstraint: NSLayoutConstraint
 	
 	lazy var animator = coordinator.getAnimator()
 	
@@ -23,6 +25,7 @@ final class MainViewController: UIViewController {
 	
 	var models = MessageStruct(result: [])
 	
+	// MARK: Views
 	let testTaskLabel: UILabel = {
 		let label = UILabel()
 		label.text = "⭐️ Тестовое Задание ⭐️"
@@ -34,6 +37,7 @@ final class MainViewController: UIViewController {
 	
 	lazy var debugDeleteButton: UIButton = {
 		let button = UIButton(frame: CGRect(x: 20, y: 35, width: 50, height: 35))
+		button.isHidden = true
 		button.layer.cornerRadius = 10
 		button.addTarget(self, action: #selector(debugButtonDeleteAll), for: .touchUpInside)
 		button.setTitle("DEL", for: .normal)
@@ -41,11 +45,21 @@ final class MainViewController: UIViewController {
 		return button
 	}()
 	
+	lazy var lightModeSwitch: UISwitch = {
+		let switcher = UISwitch()
+		switcher.isOn = false
+//		switcher.isOn = UserDefaults.standard.bool(forKey: Constants.switcher.rawValue)
+		switcher.addTarget(self, action: #selector(switcherTapped), for: .valueChanged)
+		switcher.translatesAutoresizingMaskIntoConstraints = false
+		return switcher
+	}()
+	
 	lazy var tableView = coordinator.getTableView(frame: view.frame, style: .plain)
 	
 	init(coordinator: Coordinator) {
 		self.coordinator = coordinator
 		textField = coordinator.getTextField()
+		testLabelTopConstraint = NSLayoutConstraint()
 		textFieldBottomConstraint = NSLayoutConstraint()
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -121,6 +135,7 @@ extension MainViewController {
 	
 	private func addSubviews() {
 		view.addSubview(debugDeleteButton)
+		view.addSubview(lightModeSwitch)
 		view.addSubview(testTaskLabel)
 		view.addSubview(textField)
 		view.addSubview(tableView)
@@ -140,11 +155,52 @@ extension MainViewController {
 											   selector: #selector(keyboardWillHide),
 											   name: UIResponder.keyboardWillHideNotification,
 											   object: nil)
+		/// Обзервер для удаления элемента из массива
+		NotificationCenter.default.addObserver(self,
+											   selector: #selector(deleteCellFromModels),
+											   name: .deleteCell,
+											   object: nil)
 	}
 	
 	private func removeObservers() {
 		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
 		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+	}
+	
+	@objc private func deleteCellFromModels(_ notification: Notification) {
+		if let id = notification.userInfo?[Constants.deleteCell.rawValue] as? Int {
+			print("Received id: \(id)")
+			models.result.remove(at: id)
+			/// Из-за перевернутой таблицы нужно заниматься вот таким вот
+			let idForRealm = (RealmHelper.getAllRealmObjects().count - 1) - id
+			RealmHelper.deleteModelById(by: idForRealm)
+			tableView.reloadSections(IndexSet(0...0), with: .automatic)
+		}
+	}
+	
+	@objc private func switcherTapped(_ sender: UISwitch) {
+		if sender.isOn {
+			UIView.animate(withDuration: 0.5) { [weak self] in
+				self?.tableView.backgroundColor = .black
+				self?.testTaskLabel.textColor = .white
+				self?.view.backgroundColor = .black
+				self?.textField.textColor = .black
+				self?.textField.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+				self?.tableView.reloadData()
+			}
+			UserDefaults.standard.set(true, forKey: Constants.switcher.rawValue)
+		} else {
+			UIView.animate(withDuration: 0.5) { [weak self] in
+				self?.testTaskLabel.textColor = .black
+				self?.tableView.backgroundColor = .white
+				self?.view.backgroundColor = .white
+				self?.textField.textColor = .white
+				self?.textField.layer.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+				self?.tableView.reloadData()
+			}
+			UserDefaults.standard.set(false, forKey: Constants.switcher.rawValue)
+		}
+		UserDefaults.standard.synchronize()
 	}
 	
 	@objc private func hideKeyboard() {

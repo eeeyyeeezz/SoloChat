@@ -26,7 +26,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 	/// Переход на CellViewController
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		debugPrint("DIDSELECT", indexPath.row)
-		let vc = coordinator.getCellViewController(models)
+		let vc = coordinator.getCellViewController(indexPath.row, models.result[indexPath.row])
 		navigationController?.pushViewController(vc, animated: true)
 	}
 
@@ -42,7 +42,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 				debugPrint("FETCH DATA \(indexPath.row) \(models.result.count)")
 				fetchData()
 			}
-			
+			let lightMode = UserDefaults.standard.bool(forKey: Constants.switcher.rawValue)
+			cell.backgroundColor = lightMode ? .black : .white
+			cell.messageLabel.textColor = lightMode ? .white : .black
+			cell.timeLabel.textColor = lightMode ? .white : .black
+
 			let message = models.result[indexPath.row]
 			let time = "12:34"
 			cell.messageLabel.text = "\(indexPath.row): " + message

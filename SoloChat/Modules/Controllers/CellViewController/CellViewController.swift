@@ -9,7 +9,9 @@ import UIKit
 
 class CellViewController: UIViewController {
 	
-	private let model: MessageStruct
+	private let cellID: Int
+	
+	private let message: String
 	
 	private let image: UIImageView = {
 		let image = UIImageView(image: UIImage(systemName: "faceid"))
@@ -21,12 +23,13 @@ class CellViewController: UIViewController {
 		return image
 	}()
 	
-	let messageLabel: UILabel = {
+	private lazy var messageLabel: UILabel = {
 		let label = UILabel()
-		label.textColor = .black
-		label.adjustsFontSizeToFitWidth = true
-		label.font = label.font.withSize(20)
+		label.text = message
 		label.numberOfLines = 0
+		label.textColor = .black
+		label.font = label.font.withSize(30)
+		label.adjustsFontSizeToFitWidth = true
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
 	}()
@@ -41,8 +44,9 @@ class CellViewController: UIViewController {
 		return label
 	}()
 	
-	init(model: MessageStruct) {
-		self.model = model
+	init(cellID: Int, message: String) {
+		self.cellID = cellID
+		self.message = message
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -60,6 +64,13 @@ class CellViewController: UIViewController {
 															action: #selector(deleteMessageCell))
 		navigationItem.rightBarButtonItem?.tintColor = .red
 		
+		/// Настройка согласна цветовой теме
+		let lightMode = UserDefaults.standard.bool(forKey: Constants.switcher.rawValue)
+		view.backgroundColor = lightMode ? .black : .white
+		messageLabel.textColor = lightMode ? .white : .black
+		timeLabel.textColor = lightMode ? .white : .black
+		
+		
 		addSubviews()
 		setupConstraints()
 		loadImage()
@@ -73,7 +84,7 @@ class CellViewController: UIViewController {
 	
 	private func setupConstraints() {
 		NSLayoutConstraint.activate([
-			image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+			image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
 			image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			image.heightAnchor.constraint(equalToConstant: 300),
 			image.widthAnchor.constraint(equalToConstant: 300)
@@ -81,13 +92,15 @@ class CellViewController: UIViewController {
 		
 		NSLayoutConstraint.activate([
 			timeLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 25),
-			timeLabel.leadingAnchor.constraint(equalTo: image.leadingAnchor)
+			timeLabel.leadingAnchor.constraint(equalTo: image.leadingAnchor),
+			timeLabel.heightAnchor.constraint(equalToConstant: 50)
 		])
 		
 		NSLayoutConstraint.activate([
-			messageLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: -40),
+			messageLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 20),
 			messageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-			messageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+			messageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+			messageLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
 		])
 	}
 	
@@ -96,6 +109,7 @@ class CellViewController: UIViewController {
 		NetworkManager.loadImageFromURL { [weak self] result in
 			switch result {
 			case .success(let image):
+				/// Нужно выставить альфу в 0 в том случае что если нет интернета чтобы показывалось стоковое изображение
 				self?.image.alpha = 0
 				UIView.animate(withDuration: 1) {
 					self?.image.alpha = 1
@@ -109,7 +123,10 @@ class CellViewController: UIViewController {
 	
 	@objc private func deleteMessageCell() {
 		debugPrint("DELETE CELL")
-		NotificationCenter.default.post(name: .deleteCell, object: nil)
+		/// Передача ID для удаления модели в MainViewController
+		let userInfo = [Constants.deleteCell.rawValue: cellID]
+		print(userInfo)
+		NotificationCenter.default.post(name: .deleteCell, object: nil, userInfo: userInfo)
 		navigationController?.popViewController(animated: true)
 	}
 	

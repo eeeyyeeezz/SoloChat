@@ -17,8 +17,9 @@ extension MainViewController {
 //			scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 //		])
 		
+		testLabelTopConstraint = testTaskLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
 		NSLayoutConstraint.activate([
-			testTaskLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			testLabelTopConstraint,
 			testTaskLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 		])
 		
@@ -35,6 +36,12 @@ extension MainViewController {
 			tableView.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -10),
 			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+		])
+		
+		NSLayoutConstraint.activate([
+			lightModeSwitch.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -5),
+//			lightModeSwitch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			lightModeSwitch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
 		])
 	}
 }

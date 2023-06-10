@@ -60,8 +60,13 @@ final class MessageCell: UITableViewCell {
 	
 	private func setupBinding() {
 		selectionStyle = .none
-		backgroundColor = .white
+//		backgroundColor = .white
+		let lightMode = UserDefaults.standard.bool(forKey: Constants.switcher.rawValue)
+		backgroundColor = lightMode ? .white : .black
+		messageLabel.textColor = lightMode ? .black : .white
+		timeLabel.textColor = lightMode ? .black : .white
 		activityIndicator.startAnimating()
+		
 		loadImage()
 		addSubviews()
 		setupConstraints()
