@@ -10,7 +10,8 @@ import UIKit
 protocol Coordinator {
 	func getAnimator() -> Animator
 	func getTextField() -> UITextField
-	func getMainViewController() -> UIViewController
+	func getMainViewController() -> MainViewController
+	func getCellViewController() -> CellViewController
 	func getTableView(frame: CGRect, style: UITableView.Style) -> MessageTableView
 }
 
@@ -21,9 +22,14 @@ class MainCoordinator: Coordinator {
 		return textField
 	}
 	
-	func getMainViewController() -> UIViewController {
+	func getMainViewController() -> MainViewController {
 		let mainViewController = MainViewController(coordinator: self)
 		return mainViewController
+	}
+	
+	func getCellViewController() -> CellViewController {
+		let cellViewController = CellViewController()
+		return cellViewController
 	}
 	
 	func getTableView(frame: CGRect, style: UITableView.Style) -> MessageTableView {
@@ -32,9 +38,10 @@ class MainCoordinator: Coordinator {
 	}
 	
 	func getAnimator() -> Animator {
-		let animation = AnimationFactory.makeFadeAnimation(duration: 0.5, delayFactor: 0.05)
+		let animation = AnimationFactory.makeFadeAnimation(duration: 0.2, delayFactor: 0.1)
 		let animator = Animator(animation: animation)
 		return animator
 	}
+	
 	
 }

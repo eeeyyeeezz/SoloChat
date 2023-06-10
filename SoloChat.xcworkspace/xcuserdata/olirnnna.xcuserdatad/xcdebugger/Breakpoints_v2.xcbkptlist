@@ -7,49 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "48C0F23C-4E55-4299-9F9E-E45C38C07CFC"
+            uuid = "FE391227-BC67-4C6A-A8FE-BB9620885C82"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SoloChat/Modules/Controllers/MainViewController.swift"
+            filePath = "SoloChat/Modules/Controllers/MainViewController/TableViewDelegates.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "textFieldShouldReturn(_:)"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "48C0F23C-4E55-4299-9F9E-E45C38C07CFC - c4607accb98df672"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoloChat.MainViewController.textFieldShouldReturn(__C.UITextField) -&gt; Swift.Bool"
-                  moduleName = "SoloChat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Controllers/MainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "198"
-                  endingLineNumber = "198"
-                  offsetFromSymbolStart = "1100">
-               </Location>
-               <Location
-                  uuid = "48C0F23C-4E55-4299-9F9E-E45C38C07CFC - c4607accb98df672"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoloChat.MainViewController.textFieldShouldReturn(__C.UITextField) -&gt; Swift.Bool"
-                  moduleName = "SoloChat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Controllers/MainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "198"
-                  endingLineNumber = "198"
-                  offsetFromSymbolStart = "792">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

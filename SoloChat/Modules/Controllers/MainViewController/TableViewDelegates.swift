@@ -10,18 +10,23 @@ import UIKit
 
 // MARK: Делегаты/ДатаСурс тейблвью
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+	/// Если models пустой, то показать одну ячейку для заглушки PlugCell
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		/// Если models пустой, то показать одну ячейку для заглушки PlugCell
-		models.result.count == 0 ? 1 : models.result.count
+		debugPrint("NUMBERSOFROWSINSECTION", models.result.count)
+		return models.result.count == 0 ? 1 : models.result.count
 	}
+	
+	func numberOfSections(in tableView: UITableView) -> Int { 1 }
 	
 	/// Если показывать заглушку, то размер должен быть на весь экран
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		models.result.isEmpty ? view.frame.height : view.frame.height / 6.5
 	}
 	
+	/// Переход на CellViewController
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		debugPrint("DIDSELECT", indexPath.row)
+//		navigationController?.pushViewController(coordinator.getCellViewController(), animated: true)
 	}
 
 	
@@ -41,9 +46,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 			let time = "12:34"
 			cell.messageLabel.text = "\(indexPath.row): " + message
 			cell.timeLabel.text = time
-			
-			/// Анимирование ячейки
-			animator.animate(cell: cell, at: indexPath, in: tableView)
 			return cell
 		}
 		

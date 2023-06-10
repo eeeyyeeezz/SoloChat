@@ -9,7 +9,7 @@ import UIKit
 
 final class NetworkManager {
 	
-	/// Счетчик offset для
+	/// Счетчик offset для иттерации по API
 	private static var offsetCounter = 0
 	
 	private static let cache = NSCache<NSString, UIImage>()

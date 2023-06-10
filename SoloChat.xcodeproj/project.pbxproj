@@ -25,6 +25,7 @@
 		4E9E5BC92A334DDC00FFC37B /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BC82A334DDC00FFC37B /* CellViewController.swift */; };
 		4E9E5BCC2A33614600FFC37B /* MessageStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BCB2A33614600FFC37B /* MessageStruct.swift */; };
 		4E9E5BCE2A3433A100FFC37B /* PlugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BCD2A3433A100FFC37B /* PlugCell.swift */; };
+		4E9E5BD12A3452B300FFC37B /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD02A3452B300FFC37B /* Constraints.swift */; };
 		8135F88008303499C5CE73F0 /* Pods_SoloChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093D479080BEF64026EEE576 /* Pods_SoloChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		4E9E5BC82A334DDC00FFC37B /* CellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewController.swift; sourceTree = "<group>"; };
 		4E9E5BCB2A33614600FFC37B /* MessageStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStruct.swift; sourceTree = "<group>"; };
 		4E9E5BCD2A3433A100FFC37B /* PlugCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugCell.swift; sourceTree = "<group>"; };
+		4E9E5BD02A3452B300FFC37B /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		768935A9FC5A3EA5F4F255C0 /* Pods-SoloChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoloChat.release.xcconfig"; path = "Target Support Files/Pods-SoloChat/Pods-SoloChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,8 +141,7 @@
 		4E365A5E2A3338020026D299 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4E1859122A32E2CF002BF48C /* MainViewController.swift */,
-				4E9E5BC62A334D1100FFC37B /* TableViewDelegates.swift */,
+				4E9E5BCF2A34400700FFC37B /* MainViewController */,
 				4E9E5BC82A334DDC00FFC37B /* CellViewController.swift */,
 			);
 			path = Controllers;
@@ -172,6 +173,16 @@
 				4E365A562A3310E00026D299 /* NetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		4E9E5BCF2A34400700FFC37B /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E1859122A32E2CF002BF48C /* MainViewController.swift */,
+				4E9E5BC62A334D1100FFC37B /* TableViewDelegates.swift */,
+				4E9E5BD02A3452B300FFC37B /* Constraints.swift */,
+			);
+			path = MainViewController;
 			sourceTree = "<group>";
 		};
 		DAD84B99993E5C8CB150DA53 /* Frameworks */ = {
@@ -307,6 +318,7 @@
 			files = (
 				4E9E5BC92A334DDC00FFC37B /* CellViewController.swift in Sources */,
 				4E9E5BCE2A3433A100FFC37B /* PlugCell.swift in Sources */,
+				4E9E5BD12A3452B300FFC37B /* Constraints.swift in Sources */,
 				4E365A5D2A3337F20026D299 /* DownloadResult.swift in Sources */,
 				4E1859132A32E2CF002BF48C /* MainViewController.swift in Sources */,
 				4E18590F2A32E2CF002BF48C /* AppDelegate.swift in Sources */,

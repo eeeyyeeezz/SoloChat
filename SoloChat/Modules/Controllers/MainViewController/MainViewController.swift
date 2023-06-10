@@ -14,15 +14,24 @@ final class MainViewController: UIViewController {
 	
 	// MARK: Private Properties
 	
-	private let coordinator: Coordinator
+	let coordinator: Coordinator
 	
-	private let textField: UITextField
+	let textField: UITextField
 	
 	private lazy var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
 	
 	var models = MessageStruct(result: [])
 	
-	private let testTaskLabel: UILabel = {
+	lazy var scrollView: UIScrollView = {
+		let scrollView = UIScrollView(frame: view.frame)
+		scrollView.addSubview(testTaskLabel)
+		scrollView.addSubview(textField)
+		scrollView.addSubview(tableView)
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		return scrollView
+	}()
+	
+	let testTaskLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Тестовое Задание"
 		label.textColor = .black
@@ -32,7 +41,7 @@ final class MainViewController: UIViewController {
 		return label
 	}()
 	
-	private lazy var debugDeleteButton: UIButton = {
+	lazy var debugDeleteButton: UIButton = {
 		let button = UIButton(frame: CGRect(x: 20, y: 30, width: 50, height: 50))
 		button.layer.cornerRadius = 20
 		button.addTarget(self, action: #selector(debugButtonDeleteAll), for: .touchUpInside)
@@ -41,7 +50,7 @@ final class MainViewController: UIViewController {
 		return button
 	}()
 	
-	private lazy var tableView = coordinator.getTableView(frame: view.frame, style: .plain)
+	lazy var tableView = coordinator.getTableView(frame: view.frame, style: .plain)
 	
 	init(coordinator: Coordinator) {
 		self.coordinator = coordinator
@@ -75,18 +84,20 @@ final class MainViewController: UIViewController {
 
 extension MainViewController {
 	func fetchData() {
-		NetworkManager.parseAPI { result in
+		NetworkManager.parseAPI { [weak self] result in
+			guard let self = self else { return }
 			switch result {
 			case .success(let data):
 				/// Если приходит пустой Result значит мы дошли до конца и дальше не надо парсить
 				if data.result.isEmpty { debugPrint("END OF FETCH LIST"); return }
-				self.models.result.append(contentsOf: data.result)
-				self.appendRealmObjects() // Добавлять то что находится в Realm в начало стека
+				models.result.append(contentsOf: data.result)
 				DispatchQueue.main.async {
-					self.tableView.reloadData()
+					self.tableView.reloadSections(IndexSet(integersIn: 0...0), with: .fade)
+//					self.tableView.reloadData()
 				}
 			case .failure(_):
-				self.fetchData() // Вызов функции повторно
+				/// В случае failure вызывать функцию повторно
+				self.fetchData()
 			}
 		}
 		
@@ -100,11 +111,6 @@ extension MainViewController {
 			newModel.append(realmModel.message)
 		}
 		models.result.insert(contentsOf: newModel, at: 0)
-//		let indexPath = IndexPath(row: 0, section: 0)
-//		DispatchQueue.main.async {
-//			self.tableView.insertRows(at: [indexPath], with: .automatic)
-//		}
-//		models.result.append(contentsOf: newModel)
 	}
 	
 	private func setupBinding() {
@@ -118,38 +124,18 @@ extension MainViewController {
 	}
 	
 	private func addSubviews() {
+		view.addSubview(scrollView)
 		view.addSubview(debugDeleteButton)
-		view.addSubview(testTaskLabel)
-		view.addSubview(textField)
-		view.addSubview(tableView)
+//		view.addSubview(testTaskLabel)
+//		view.addSubview(textField)
+//		view.addSubview(tableView)
 		
 		// При нажатии на любую часть экрана TextField скрывается
 		tapGestureRecognizer.cancelsTouchesInView = false
 		view.addGestureRecognizer(tapGestureRecognizer)
 		
 	}
-	
-	private func setupConstraints() {
-		NSLayoutConstraint.activate([
-			testTaskLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			testTaskLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-		])
-		
-		NSLayoutConstraint.activate([
-			textField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-			textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-			textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-			textField.heightAnchor.constraint(equalToConstant: 50)
-		])
-		
-		NSLayoutConstraint.activate([
-			tableView.topAnchor.constraint(equalTo: testTaskLabel.bottomAnchor),
-			tableView.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -10),
-			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-		])
-	}
-	
+
 	private func registerForKeyboardNotifications() {
 		NotificationCenter.default.addObserver(self,
 											   selector: #selector(keyboardWillShow),
@@ -173,12 +159,14 @@ extension MainViewController {
 	@objc private func keyboardWillShow(notification: Notification) {
 		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
 			let keyboardHeight = keyboardFrame.cgRectValue.height
+//			scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight)
 			view.frame.origin.y -= keyboardHeight
 			print(view.frame.origin.y, keyboardHeight)
 		}
 	}
 	
 	@objc private func keyboardWillHide() {
+//		scrollView.contentOffset = CGPoint.zero
 		view.frame.origin.y = 0
 	}
 	
@@ -200,8 +188,10 @@ extension MainViewController: UITextFieldDelegate {
 			let minutes = (Calendar.current.component(.minute, from: today))
 			models.result.insert(contentsOf: [text], at: 0)
 			
+			// Push новых данные в Realm + добавление в начала стека
 			RealmHelper.pushToRealm(message: text, time: "\(hours):\(minutes)")
-			tableView.reloadData()
+			tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+			tableView.reloadSections(IndexSet(integersIn: 0...0), with: .fade)
 		}
 		textField.text = nil
 		return true

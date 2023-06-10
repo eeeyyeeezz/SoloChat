@@ -26,10 +26,10 @@ final class Animator {
 //		}
 //		isAnimated.append(indexPath.row)
 		
+		debugPrint("LAST", tableView.indexPathsForVisibleRows?.last?.row)
 		if indexPath.row == 0 {
 			animation(cell, indexPath, tableView)
 		}
-		
 	}
 	
 }
