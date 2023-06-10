@@ -8,6 +8,7 @@
 import UIKit
 
 protocol Coordinator {
+	func getAnimator() -> Animator
 	func getTextField() -> UITextField
 	func getMainViewController() -> UIViewController
 	func getTableView(frame: CGRect, style: UITableView.Style) -> MessageTableView

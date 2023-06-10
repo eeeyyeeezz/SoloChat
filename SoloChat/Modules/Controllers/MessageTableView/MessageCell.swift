@@ -25,8 +25,9 @@ final class MessageCell: UITableViewCell {
 	let messageLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = .black
-		label.tintColor = .black
-		label.font = label.font.withSize(32)
+		label.adjustsFontSizeToFitWidth = true
+		label.font = label.font.withSize(20)
+		label.numberOfLines = 0
 		label.transform = CGAffineTransform(scaleX: 1, y: -1)
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
@@ -52,11 +53,13 @@ final class MessageCell: UITableViewCell {
 	override func prepareForReuse() {
 		super.prepareForReuse()
 		cellImage.image = nil
+		messageLabel.text = ""
 		activityIndicator.startAnimating()
 		loadImage()
 	}
 	
 	private func setupBinding() {
+		selectionStyle = .none
 		backgroundColor = .white
 		activityIndicator.startAnimating()
 		loadImage()
@@ -65,17 +68,19 @@ final class MessageCell: UITableViewCell {
 	}
 	
 	private func loadImage() {
-		ImageLoader.loadImageFromURL { [weak self] result in
+		NetworkManager.loadImageFromURL { [weak self] result in
 			guard let self = self else { return }
 			switch result {
 			case .success(let image):
 				DispatchQueue.main.async {
 					self.cellImage.image = image
-//					self.cellImage.layer.cornerRadius = self.cellImage.frame.size.width / 2
 					self.cellImage.layer.cornerRadius = self.cellImage.frame.size.height / 2
 					self.activityIndicator.stopAnimating()
 				}
 			case .failure(_):
+				/// В случае если не загружается аватарка - подгружать новую. Оставил комментом для возможного дальнейшего расширения функционала
+				/// Для одной аватарки оставлять смысла нет
+//				loadImage()
 				break ;
 			}
 		}
@@ -98,8 +103,8 @@ final class MessageCell: UITableViewCell {
 		
 		NSLayoutConstraint.activate([
 			messageLabel.topAnchor.constraint(equalTo: topAnchor),
-			messageLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 30),
-			messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+			messageLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 20),
+			messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
 			messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
 		])
 		

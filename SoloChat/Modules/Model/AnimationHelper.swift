@@ -20,11 +20,16 @@ final class Animator {
 	}
 	
 	func animate(cell: UITableViewCell, at indexPath: IndexPath, in tableView: UITableView) {
-		if !isAnimated.contains(indexPath.row) {
-			print(indexPath.row, isAnimated.count)
+//		if !isAnimated.contains(indexPath.row) {
+//			print(indexPath.row, isAnimated.count)
+//			animation(cell, indexPath, tableView)
+//		}
+//		isAnimated.append(indexPath.row)
+		
+		if indexPath.row == 0 {
 			animation(cell, indexPath, tableView)
 		}
-		isAnimated.append(indexPath.row)
+		
 	}
 	
 }

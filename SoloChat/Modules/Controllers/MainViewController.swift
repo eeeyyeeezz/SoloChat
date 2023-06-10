@@ -10,6 +10,8 @@ import UIKit
 // MARK: ViewController 
 final class MainViewController: UIViewController {
 
+	lazy var animator = coordinator.getAnimator()
+	
 	// MARK: Private Properties
 	
 	private let coordinator: Coordinator
@@ -17,6 +19,8 @@ final class MainViewController: UIViewController {
 	private let textField: UITextField
 	
 	private lazy var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+	
+	var models = MessageStruct(result: [])
 	
 	private let testTaskLabel: UILabel = {
 		let label = UILabel()
@@ -56,6 +60,8 @@ final class MainViewController: UIViewController {
 	}
 	
 	private func setupViewController() {
+		appendRealmObjects() // Добавляем данные из Realm в локальный Storage
+		fetchData()
 		setupBinding()
 		addSubviews()
 		setupConstraints()
@@ -68,13 +74,47 @@ final class MainViewController: UIViewController {
 }
 
 extension MainViewController {
+	func fetchData() {
+		NetworkManager.parseAPI { result in
+			switch result {
+			case .success(let data):
+				/// Если приходит пустой Result значит мы дошли до конца и дальше не надо парсить
+				if data.result.isEmpty { debugPrint("END OF FETCH LIST"); return }
+				self.models.result.append(contentsOf: data.result)
+				self.appendRealmObjects() // Добавлять то что находится в Realm в начало стека
+				DispatchQueue.main.async {
+					self.tableView.reloadData()
+				}
+			case .failure(_):
+				self.fetchData() // Вызов функции повторно
+			}
+		}
+		
+	}
+	
 	// MARK: Private Methods
+	private func appendRealmObjects() {
+		var newModel = [String]()
+		let realmObjects = RealmHelper.getAllRealmObjects()
+		realmObjects.forEach { realmModel in
+			newModel.append(realmModel.message)
+		}
+		models.result.insert(contentsOf: newModel, at: 0)
+//		let indexPath = IndexPath(row: 0, section: 0)
+//		DispatchQueue.main.async {
+//			self.tableView.insertRows(at: [indexPath], with: .automatic)
+//		}
+//		models.result.append(contentsOf: newModel)
+	}
+	
 	private func setupBinding() {
 		navigationController?.navigationBar.isHidden = true
 		
 		title = "Тестовое Задание"
 		view.backgroundColor = .white
 		textField.delegate = self
+		tableView.delegate = self
+		tableView.dataSource = self
 	}
 	
 	private func addSubviews() {
@@ -151,13 +191,14 @@ extension MainViewController {
 // MARK: UITextFieldDelegates
 extension MainViewController: UITextFieldDelegate {
 	
-	
 	// Проверяем что написали в TextField
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		if let text = textField.text, !text.isEmpty {
 			let today = Date()
 			let hours = (Calendar.current.component(.hour, from: today))
 			let minutes = (Calendar.current.component(.minute, from: today))
+			models.result.insert(contentsOf: [text], at: 0)
+			
 			RealmHelper.pushToRealm(message: text, time: "\(hours):\(minutes)")
 			tableView.reloadData()
 		}
@@ -165,3 +206,5 @@ extension MainViewController: UITextFieldDelegate {
 		return true
 	}
 }
+
+

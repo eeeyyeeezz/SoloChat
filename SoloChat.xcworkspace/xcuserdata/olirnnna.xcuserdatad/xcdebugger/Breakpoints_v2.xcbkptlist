@@ -3,4 +3,102 @@
    uuid = "49F5BB88-EC17-4C24-845A-36D997838F70"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F9F6A16-3DA7-4264-BE1C-69E79CF94CE9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoloChat/Modules/Model/Network/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "parseAPI(completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8F9F6A16-3DA7-4264-BE1C-69E79CF94CE9 - df8d3680bc79c80b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SoloChat.NetworkManager.parseAPI(completionHandler: (Swift.Result&lt;Swift.Array&lt;SoloChat.MessageStruct&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Model/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "236">
+               </Location>
+               <Location
+                  uuid = "8F9F6A16-3DA7-4264-BE1C-69E79CF94CE9 - df8d3680bc79c80b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SoloChat.NetworkManager.parseAPI(completionHandler: (Swift.Result&lt;Swift.Array&lt;SoloChat.MessageStruct&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Model/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "708">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "48C0F23C-4E55-4299-9F9E-E45C38C07CFC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoloChat/Modules/Controllers/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "textFieldShouldReturn(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "48C0F23C-4E55-4299-9F9E-E45C38C07CFC - c4607accb98df672"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SoloChat.MainViewController.textFieldShouldReturn(__C.UITextField) -&gt; Swift.Bool"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Controllers/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "1100">
+               </Location>
+               <Location
+                  uuid = "48C0F23C-4E55-4299-9F9E-E45C38C07CFC - c4607accb98df672"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SoloChat.MainViewController.textFieldShouldReturn(__C.UITextField) -&gt; Swift.Bool"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Controllers/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "792">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
