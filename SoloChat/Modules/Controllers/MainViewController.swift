@@ -122,6 +122,7 @@ extension MainViewController {
 		view.addSubview(testTaskLabel)
 		view.addSubview(textField)
 		view.addSubview(tableView)
+		
 		// При нажатии на любую часть экрана TextField скрывается
 		tapGestureRecognizer.cancelsTouchesInView = false
 		view.addGestureRecognizer(tapGestureRecognizer)

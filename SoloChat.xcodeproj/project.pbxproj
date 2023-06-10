@@ -24,6 +24,7 @@
 		4E9E5BC72A334D1100FFC37B /* TableViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BC62A334D1100FFC37B /* TableViewDelegates.swift */; };
 		4E9E5BC92A334DDC00FFC37B /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BC82A334DDC00FFC37B /* CellViewController.swift */; };
 		4E9E5BCC2A33614600FFC37B /* MessageStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BCB2A33614600FFC37B /* MessageStruct.swift */; };
+		4E9E5BCE2A3433A100FFC37B /* PlugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BCD2A3433A100FFC37B /* PlugCell.swift */; };
 		8135F88008303499C5CE73F0 /* Pods_SoloChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093D479080BEF64026EEE576 /* Pods_SoloChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		4E9E5BC62A334D1100FFC37B /* TableViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegates.swift; sourceTree = "<group>"; };
 		4E9E5BC82A334DDC00FFC37B /* CellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewController.swift; sourceTree = "<group>"; };
 		4E9E5BCB2A33614600FFC37B /* MessageStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStruct.swift; sourceTree = "<group>"; };
+		4E9E5BCD2A3433A100FFC37B /* PlugCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugCell.swift; sourceTree = "<group>"; };
 		768935A9FC5A3EA5F4F255C0 /* Pods-SoloChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoloChat.release.xcconfig"; path = "Target Support Files/Pods-SoloChat/Pods-SoloChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 			children = (
 				4E365A4A2A32FAD20026D299 /* MessageTableView.swift */,
 				4E365A4F2A32FF6F0026D299 /* MessageCell.swift */,
+				4E9E5BCD2A3433A100FFC37B /* PlugCell.swift */,
 			);
 			path = MessageTableView;
 			sourceTree = "<group>";
@@ -139,7 +142,6 @@
 				4E1859122A32E2CF002BF48C /* MainViewController.swift */,
 				4E9E5BC62A334D1100FFC37B /* TableViewDelegates.swift */,
 				4E9E5BC82A334DDC00FFC37B /* CellViewController.swift */,
-				4E365A512A32FF950026D299 /* MessageTableView */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -156,6 +158,7 @@
 		4E9E5BC52A33435C00FFC37B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E365A512A32FF950026D299 /* MessageTableView */,
 				4E1859242A32E6B7002BF48C /* MessageTextField.swift */,
 			);
 			path = Views;
@@ -303,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E9E5BC92A334DDC00FFC37B /* CellViewController.swift in Sources */,
+				4E9E5BCE2A3433A100FFC37B /* PlugCell.swift in Sources */,
 				4E365A5D2A3337F20026D299 /* DownloadResult.swift in Sources */,
 				4E1859132A32E2CF002BF48C /* MainViewController.swift in Sources */,
 				4E18590F2A32E2CF002BF48C /* AppDelegate.swift in Sources */,

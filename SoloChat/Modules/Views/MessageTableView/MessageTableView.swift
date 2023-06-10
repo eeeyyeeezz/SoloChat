@@ -13,10 +13,10 @@ final class MessageTableView: UITableView {
 		super.init(frame: frame, style: style)
 		backgroundColor = .white
 		transform = CGAffineTransformMakeScale(1, -1)
-//		transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
 		contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
 		separatorStyle = UITableViewCell.SeparatorStyle.none
 		register(MessageCell.self, forCellReuseIdentifier: MessageCell.identifier)
+		register(PlugCell.self, forCellReuseIdentifier: PlugCell.identifier)
 		translatesAutoresizingMaskIntoConstraints = false
 		
 	}
