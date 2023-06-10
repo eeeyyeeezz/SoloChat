@@ -37,13 +37,18 @@ class PlugCell: UITableViewCell {
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		selectionStyle = .none
-		backgroundColor = .white
 	}
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		addSubview(plugImage)
 		addSubview(plugLabel)
+		
+		let lightMode = UserDefaults.standard.bool(forKey: Constants.switcher.rawValue)
+		backgroundColor = lightMode ? .black : .white
+		plugImage.tintColor = lightMode ? .white : .black
+		plugLabel.textColor = lightMode ? .white : .black
+		
 		
 		NSLayoutConstraint.activate([
 			plugLabel.topAnchor.constraint(equalTo: plugImage.topAnchor, constant: -50),

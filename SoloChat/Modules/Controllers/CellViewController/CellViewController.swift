@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Контроллер появляющийся при нажатии на ячейку
 class CellViewController: UIViewController {
 	
 	private let cellID: Int
@@ -58,6 +59,7 @@ class CellViewController: UIViewController {
 	
 	private func setupBinding() {
 		navigationController?.navigationBar.isHidden = false
+
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete",
 															style: .plain,
 															target: self,
@@ -66,10 +68,10 @@ class CellViewController: UIViewController {
 		
 		/// Настройка согласна цветовой теме
 		let lightMode = UserDefaults.standard.bool(forKey: Constants.switcher.rawValue)
+		navigationController?.navigationBar.tintColor = lightMode ? .white : .black
 		view.backgroundColor = lightMode ? .black : .white
 		messageLabel.textColor = lightMode ? .white : .black
 		timeLabel.textColor = lightMode ? .white : .black
-		
 		
 		addSubviews()
 		setupConstraints()
