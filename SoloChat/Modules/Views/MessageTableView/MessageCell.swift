@@ -16,7 +16,7 @@ final class MessageCell: UITableViewCell {
 	private let cellImage: UIImageView = {
 		let image = UIImageView()
 		image.contentMode = .scaleAspectFill
-		image.layer.masksToBounds = true
+		image.clipsToBounds = true
 		image.transform = CGAffineTransform(scaleX: 1, y: -1)
 		image.translatesAutoresizingMaskIntoConstraints = false
 		return image
@@ -74,7 +74,7 @@ final class MessageCell: UITableViewCell {
 			case .success(let image):
 				DispatchQueue.main.async {
 					self.cellImage.image = image
-					self.cellImage.layer.cornerRadius = self.cellImage.frame.size.height / 2
+					self.cellImage.layer.cornerRadius = self.cellImage.frame.size.width / 2
 					self.activityIndicator.stopAnimating()
 				}
 			case .failure(_):

@@ -30,10 +30,9 @@ extension MainViewController {
 			textField.heightAnchor.constraint(equalToConstant: 50)
 		])
 		
-		tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -10)
 		NSLayoutConstraint.activate([
 			tableView.topAnchor.constraint(equalTo: testTaskLabel.bottomAnchor),
-			tableViewBottomConstraint,
+			tableView.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -10),
 			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 		])

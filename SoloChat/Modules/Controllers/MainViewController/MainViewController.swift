@@ -10,13 +10,10 @@ import UIKit
 // MARK: ViewController 
 final class MainViewController: UIViewController {
 
-	var textFieldBottomConstraint = NSLayoutConstraint()
-	
-	var tableViewBottomConstraint = NSLayoutConstraint()
+	// MARK: Properties
+	var textFieldBottomConstraint: NSLayoutConstraint
 	
 	lazy var animator = coordinator.getAnimator()
-	
-	// MARK: Private Properties
 	
 	let coordinator: Coordinator
 	
@@ -26,28 +23,18 @@ final class MainViewController: UIViewController {
 	
 	var models = MessageStruct(result: [])
 	
-	lazy var scrollView: UIScrollView = {
-		let scrollView = UIScrollView(frame: view.frame)
-		scrollView.addSubview(testTaskLabel)
-		scrollView.addSubview(textField)
-		scrollView.addSubview(tableView)
-		scrollView.translatesAutoresizingMaskIntoConstraints = false
-		return scrollView
-	}()
-	
 	let testTaskLabel: UILabel = {
 		let label = UILabel()
-		label.text = "Тестовое Задание"
+		label.text = "⭐️ Тестовое Задание ⭐️"
 		label.textColor = .black
-		label.tintColor = .black
-		label.font = label.font.withSize(22)
+		label.font = label.font.withSize(20)
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
 	}()
 	
 	lazy var debugDeleteButton: UIButton = {
-		let button = UIButton(frame: CGRect(x: 20, y: 30, width: 50, height: 50))
-		button.layer.cornerRadius = 20
+		let button = UIButton(frame: CGRect(x: 20, y: 35, width: 50, height: 35))
+		button.layer.cornerRadius = 10
 		button.addTarget(self, action: #selector(debugButtonDeleteAll), for: .touchUpInside)
 		button.setTitle("DEL", for: .normal)
 		button.backgroundColor = .red
@@ -59,6 +46,7 @@ final class MainViewController: UIViewController {
 	init(coordinator: Coordinator) {
 		self.coordinator = coordinator
 		textField = coordinator.getTextField()
+		textFieldBottomConstraint = NSLayoutConstraint()
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -72,8 +60,14 @@ final class MainViewController: UIViewController {
 		setupViewController()
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		navigationController?.navigationBar.isHidden = true
+	}
+	
 	private func setupViewController() {
-		appendRealmObjects() // Добавляем данные из Realm в локальный Storage
+		/// Добавляем данные из Realm в локальный Storage. Нужно добавлять перевернутый из-за перевернутого tableView
+		appendRealmObjectsInReverse()
 		fetchData()
 		setupBinding()
 		addSubviews()
@@ -108,9 +102,9 @@ extension MainViewController {
 	}
 	
 	// MARK: Private Methods
-	private func appendRealmObjects() {
+	private func appendRealmObjectsInReverse() {
 		var newModel = [String]()
-		let realmObjects = RealmHelper.getAllRealmObjects()
+		let realmObjects = RealmHelper.getAllRealmObjects().reversed()
 		realmObjects.forEach { realmModel in
 			newModel.append(realmModel.message)
 		}
@@ -118,8 +112,6 @@ extension MainViewController {
 	}
 	
 	private func setupBinding() {
-		navigationController?.navigationBar.isHidden = true
-		
 		title = "Тестовое Задание"
 		view.backgroundColor = .white
 		textField.delegate = self
@@ -128,7 +120,6 @@ extension MainViewController {
 	}
 	
 	private func addSubviews() {
-//		view.addSubview(scrollView)
 		view.addSubview(debugDeleteButton)
 		view.addSubview(testTaskLabel)
 		view.addSubview(textField)
@@ -152,17 +143,31 @@ extension MainViewController {
 	}
 	
 	private func removeObservers() {
-		NotificationCenter.default.removeObserver(self, name:  UIResponder.keyboardWillShowNotification, object: nil)
-		NotificationCenter.default.removeObserver(self, name:  UIResponder.keyboardWillHideNotification, object: nil)
+		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
 	}
 	
 	@objc private func hideKeyboard() {
 		view.endEditing(true)
 	}
 	
+	/// Это для дебага
 	@objc func debugButtonDeleteAll() {
+		let realmObjects = RealmHelper.getAllRealmObjects()
+		realmObjects.forEach { object in
+			models.result.remove(at: object.id)
+//			tableView.deleteRows(at: [IndexPath(row: object.id, section: 0)], with: .automatic)
+			RealmHelper.updateAllRealmObjectsIdAfterDelete()
+			tableView.reloadData()
+		}
 		RealmHelper.deleteAllModels()
-		tableView.reloadData()
+	}
+	
+	/// Обновить значения у Models после удаления каких-либо данных для того чтобы ID нормально стояли
+	/// Вызывать ТОЛЬКО после удаления какого-либо элемента
+	/// Иначе ячейки будут располагаться неправильно и возможен UB
+	private func updateAllModelsValuesAfterDelete() {
+		
 	}
 }
 
@@ -180,8 +185,9 @@ extension MainViewController: UITextFieldDelegate {
 			
 			// Push новых данные в Realm + добавление в начала стека
 			RealmHelper.pushToRealm(message: text, time: "\(hours):\(minutes)")
-			tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-			tableView.reloadSections(IndexSet(integersIn: 0...0), with: .fade)
+			/// Оно начало тут ломаться внезапно вопрос почему а главное зачем?
+//			tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+			tableView.reloadSections(IndexSet(integersIn: 0...0), with: .automatic)
 		}
 		textField.text = nil
 		return true

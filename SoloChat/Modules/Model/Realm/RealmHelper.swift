@@ -61,6 +61,20 @@ class RealmHelper {
 		debugPrint("PUSH REALM", realmObjects.count)
 	}
 	
+	/// Обновить каждую ID у объектов Realm для того чтобы отсортировать правильно
+	/// Вызывать ТОЛЬКО после удаления одного объекта
+	static func updateAllRealmObjectsIdAfterDelete() {
+		let realm = try! Realm()
+		let realmObjects = RealmHelper.getAllRealmObjects()
+		realmObjects.forEach { object in
+			if object.id != 0 {
+				try! realm.write {
+					object.id -= 1
+				}
+			}
+		}
+	}
+	
 	static func deleteAllModels() {
 		let realm = try! Realm()
 		try! realm.write {

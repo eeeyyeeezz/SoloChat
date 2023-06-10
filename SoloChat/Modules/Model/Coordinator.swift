@@ -11,7 +11,7 @@ protocol Coordinator {
 	func getAnimator() -> Animator
 	func getTextField() -> MessageTextField
 	func getMainViewController() -> MainViewController
-	func getCellViewController() -> CellViewController
+	func getCellViewController(_ model: MessageStruct) -> CellViewController
 	func getTableView(frame: CGRect, style: UITableView.Style) -> MessageTableView
 }
 
@@ -27,8 +27,8 @@ class MainCoordinator: Coordinator {
 		return mainViewController
 	}
 	
-	func getCellViewController() -> CellViewController {
-		let cellViewController = CellViewController()
+	func getCellViewController(_ model: MessageStruct) -> CellViewController {
+		let cellViewController = CellViewController(model: model)
 		return cellViewController
 	}
 	
