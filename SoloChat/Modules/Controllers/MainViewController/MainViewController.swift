@@ -10,13 +10,17 @@ import UIKit
 // MARK: ViewController 
 final class MainViewController: UIViewController {
 
+	var textFieldBottomConstraint = NSLayoutConstraint()
+	
+	var tableViewBottomConstraint = NSLayoutConstraint()
+	
 	lazy var animator = coordinator.getAnimator()
 	
 	// MARK: Private Properties
 	
 	let coordinator: Coordinator
 	
-	let textField: UITextField
+	let textField: MessageTextField
 	
 	private lazy var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
 	
@@ -124,11 +128,11 @@ extension MainViewController {
 	}
 	
 	private func addSubviews() {
-		view.addSubview(scrollView)
+//		view.addSubview(scrollView)
 		view.addSubview(debugDeleteButton)
-//		view.addSubview(testTaskLabel)
-//		view.addSubview(textField)
-//		view.addSubview(tableView)
+		view.addSubview(testTaskLabel)
+		view.addSubview(textField)
+		view.addSubview(tableView)
 		
 		// При нажатии на любую часть экрана TextField скрывается
 		tapGestureRecognizer.cancelsTouchesInView = false
@@ -154,20 +158,6 @@ extension MainViewController {
 	
 	@objc private func hideKeyboard() {
 		view.endEditing(true)
-	}
-	
-	@objc private func keyboardWillShow(notification: Notification) {
-		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-			let keyboardHeight = keyboardFrame.cgRectValue.height
-//			scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight)
-			view.frame.origin.y -= keyboardHeight
-			print(view.frame.origin.y, keyboardHeight)
-		}
-	}
-	
-	@objc private func keyboardWillHide() {
-//		scrollView.contentOffset = CGPoint.zero
-		view.frame.origin.y = 0
 	}
 	
 	@objc func debugButtonDeleteAll() {

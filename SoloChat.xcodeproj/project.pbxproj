@@ -26,6 +26,7 @@
 		4E9E5BCC2A33614600FFC37B /* MessageStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BCB2A33614600FFC37B /* MessageStruct.swift */; };
 		4E9E5BCE2A3433A100FFC37B /* PlugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BCD2A3433A100FFC37B /* PlugCell.swift */; };
 		4E9E5BD12A3452B300FFC37B /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD02A3452B300FFC37B /* Constraints.swift */; };
+		4E9E5BD32A34656900FFC37B /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD22A34656900FFC37B /* KeyboardManager.swift */; };
 		8135F88008303499C5CE73F0 /* Pods_SoloChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093D479080BEF64026EEE576 /* Pods_SoloChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		4E9E5BCB2A33614600FFC37B /* MessageStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStruct.swift; sourceTree = "<group>"; };
 		4E9E5BCD2A3433A100FFC37B /* PlugCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugCell.swift; sourceTree = "<group>"; };
 		4E9E5BD02A3452B300FFC37B /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		4E9E5BD22A34656900FFC37B /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		768935A9FC5A3EA5F4F255C0 /* Pods-SoloChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoloChat.release.xcconfig"; path = "Target Support Files/Pods-SoloChat/Pods-SoloChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +182,7 @@
 			children = (
 				4E1859122A32E2CF002BF48C /* MainViewController.swift */,
 				4E9E5BC62A334D1100FFC37B /* TableViewDelegates.swift */,
+				4E9E5BD22A34656900FFC37B /* KeyboardManager.swift */,
 				4E9E5BD02A3452B300FFC37B /* Constraints.swift */,
 			);
 			path = MainViewController;
@@ -323,6 +326,7 @@
 				4E1859132A32E2CF002BF48C /* MainViewController.swift in Sources */,
 				4E18590F2A32E2CF002BF48C /* AppDelegate.swift in Sources */,
 				4E365A5B2A3330DA0026D299 /* AnimationHelper.swift in Sources */,
+				4E9E5BD32A34656900FFC37B /* KeyboardManager.swift in Sources */,
 				4E365A4D2A32FB880026D299 /* Coordinator.swift in Sources */,
 				4E365A4B2A32FAD20026D299 /* MessageTableView.swift in Sources */,
 				4E9E5BC72A334D1100FFC37B /* TableViewDelegates.swift in Sources */,

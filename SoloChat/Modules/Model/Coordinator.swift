@@ -9,7 +9,7 @@ import UIKit
 
 protocol Coordinator {
 	func getAnimator() -> Animator
-	func getTextField() -> UITextField
+	func getTextField() -> MessageTextField
 	func getMainViewController() -> MainViewController
 	func getCellViewController() -> CellViewController
 	func getTableView(frame: CGRect, style: UITableView.Style) -> MessageTableView
@@ -17,7 +17,7 @@ protocol Coordinator {
 
 class MainCoordinator: Coordinator {
 	
-	func getTextField() -> UITextField {
+	func getTextField() -> MessageTextField {
 		let textField = MessageTextField()
 		return textField
 	}
