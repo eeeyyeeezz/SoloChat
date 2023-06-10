@@ -51,6 +51,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 			let time = "12:34"
 			cell.messageLabel.text = "\(indexPath.row): " + message
 			cell.timeLabel.text = time
+			animator.animate(cell: cell, at: indexPath, in: tableView)
 			return cell
 		}
 		

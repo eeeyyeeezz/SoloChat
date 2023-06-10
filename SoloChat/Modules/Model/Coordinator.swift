@@ -38,7 +38,7 @@ class MainCoordinator: Coordinator {
 	}
 	
 	func getAnimator() -> Animator {
-		let animation = AnimationFactory.makeFadeAnimation(duration: 0.2, delayFactor: 0.1)
+		let animation = AnimationFactory.makeFadeAnimation(duration: 0.5, delayFactor: 0.1)
 		let animator = Animator(animation: animation)
 		return animator
 	}

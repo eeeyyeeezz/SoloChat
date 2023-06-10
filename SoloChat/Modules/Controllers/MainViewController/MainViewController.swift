@@ -36,8 +36,8 @@ final class MainViewController: UIViewController {
 	}()
 	
 	lazy var debugDeleteButton: UIButton = {
-		let button = UIButton(frame: CGRect(x: 20, y: 35, width: 50, height: 35))
-		button.isHidden = true
+		let button = UIButton(frame: CGRect(x: 300, y: 35, width: 50, height: 35))
+		button.isHidden = false
 		button.layer.cornerRadius = 10
 		button.addTarget(self, action: #selector(debugButtonDeleteAll), for: .touchUpInside)
 		button.setTitle("DEL", for: .normal)
@@ -48,7 +48,6 @@ final class MainViewController: UIViewController {
 	lazy var lightModeSwitch: UISwitch = {
 		let switcher = UISwitch()
 		switcher.isOn = false
-//		switcher.isOn = UserDefaults.standard.bool(forKey: Constants.switcher.rawValue)
 		switcher.addTarget(self, action: #selector(switcherTapped), for: .valueChanged)
 		switcher.translatesAutoresizingMaskIntoConstraints = false
 		return switcher
@@ -243,7 +242,8 @@ extension MainViewController: UITextFieldDelegate {
 			RealmHelper.pushToRealm(message: text, time: "\(hours):\(minutes)")
 			/// Оно начало тут ломаться внезапно вопрос почему а главное зачем?
 //			tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-			tableView.reloadSections(IndexSet(integersIn: 0...0), with: .automatic)
+//			tableView.reloadSections(IndexSet(integersIn: 0...0), with: .automatic)
+			tableView.reloadData()
 		}
 		textField.text = nil
 		return true
