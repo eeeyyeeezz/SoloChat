@@ -63,12 +63,18 @@ class RealmHelper {
 	
 	/// Обновить каждую ID у объектов Realm для того чтобы отсортировать правильно
 	/// Вызывать ТОЛЬКО после удаления одного объекта
-	static func updateAllRealmObjectsIdAfterDelete() {
+	/// Передавать опционал нужно из-за дебага
+	/// Если удаляем последний (или первый в стеке) элемент в таблице - ничего не надо менять и выходим из функции
+	static func updateAllRealmObjectsIdAfterDelete(idToDelete: Int?) {
 		let realm = try! Realm()
 		let realmObjects = RealmHelper.getAllRealmObjects()
+		if let idToDelete = idToDelete {
+			guard idToDelete != realmObjects.count else { debugPrint("TEST NO DELETE") ; return}
+		}
 		realmObjects.forEach { object in
 			if object.id != 0 {
 				try! realm.write {
+					debugPrint("TEST NEW OBJECT \(object.id): \(object.message), OBJECTS TO SHIFT COUNT \(realmObjects.count)")
 					object.id -= 1
 				}
 			}
@@ -80,9 +86,9 @@ class RealmHelper {
 		let realm = try! Realm()
 		let realmObjects = RealmHelper.getAllRealmObjects()
 		let objectsToDelete = realmObjects.filter("id == %@", id)
-		debugPrint("COUNTS FOR ID \(id):", realmObjects.count, objectsToDelete.count)
+		debugPrint("TEST FOR ID \(id):", realmObjects.count, objectsToDelete.count)
 		realmObjects.forEach {
-			debugPrint($0.id)
+			debugPrint("TEST EACH \($0.id) FOR \(id)")
 		}
 		objectsToDelete.forEach {
 			print("TEST DELETE \(id) REALMID \($0.id) MESSAGE \($0.message)")
@@ -91,15 +97,8 @@ class RealmHelper {
 		try? realm.write {
 			realm.delete(objectsToDelete)
 		}
-
-		let objectsToShift = RealmHelper.getAllRealmObjects().filter("id > 0 && id != %@", id)//.reversed()
-
-		try? realm.write {
-			for object in objectsToShift {
-				object.id -= 1
-			}
-		}
-			
+		
+		RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: id)
 	}
 	
 	static func deleteAllModels() {

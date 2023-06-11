@@ -78,8 +78,8 @@
             filePath = "SoloChat/Modules/Model/Realm/RealmHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "deleteModelById(by:)"
             landmarkType = "7">
             <Locations>
