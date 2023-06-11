@@ -37,7 +37,7 @@ final class MainViewController: UIViewController {
 	
 	lazy var debugDeleteButton: UIButton = {
 		let button = UIButton(frame: CGRect(x: 300, y: 35, width: 50, height: 35))
-		button.isHidden = false
+		button.isHidden = true
 		button.layer.cornerRadius = 10
 		button.addTarget(self, action: #selector(debugButtonDeleteAll), for: .touchUpInside)
 		button.setTitle("DEL", for: .normal)

@@ -36,5 +36,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5461D430-CA8D-4307-A76F-7AA65C19AD16"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoloChat/Modules/Controllers/CellViewController/CellViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "deleteMessageCell()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17511C0E-0D15-4022-A303-B67154CD6378"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoloChat/Modules/Controllers/CellViewController/CellViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "deleteMessageCell()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB966ED6-C186-4A19-B0DF-2DE8DA89B110"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoloChat/Modules/Model/Realm/RealmHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "deleteModelById(by:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CB966ED6-C186-4A19-B0DF-2DE8DA89B110 - 278222e7242e0b7f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SoloChat.RealmHelper.deleteModelById(by: Swift.Int) -&gt; ()"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Model/Realm/RealmHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "360">
+               </Location>
+               <Location
+                  uuid = "CB966ED6-C186-4A19-B0DF-2DE8DA89B110 - 388f2fd1409ed39c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SoloChat.MessageModel) -&gt; () in static SoloChat.RealmHelper.deleteModelById(by: Swift.Int) -&gt; ()"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Model/Realm/RealmHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
