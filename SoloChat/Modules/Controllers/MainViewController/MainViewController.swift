@@ -184,7 +184,6 @@ extension MainViewController {
 				self?.testTaskLabel.textColor = .white
 				self?.view.backgroundColor = .black
 				self?.textField.textColor = .black
-				self?.textField.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 				self?.tableView.reloadData()
 			}
 			UserDefaults.standard.set(true, forKey: Constants.switcher.rawValue)
@@ -194,7 +193,6 @@ extension MainViewController {
 				self?.tableView.backgroundColor = .white
 				self?.view.backgroundColor = .white
 				self?.textField.textColor = .white
-				self?.textField.layer.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 				self?.tableView.reloadData()
 			}
 			UserDefaults.standard.set(false, forKey: Constants.switcher.rawValue)
