@@ -60,8 +60,6 @@ class RealmHelper {
 	/// Передавать опционал нужно из-за дебага
 	/// Если удаляем последний (или первый в стеке) элемент в таблице - ничего не надо менять и выходим из функции
 	static func updateAllRealmObjectsIdAfterDelete(idToDelete: Int) {
-		if RealmHelper.getAllRealmObjects().count == 0 { return }
-		
 		let realm = try! Realm()
 		let realmObjects = RealmHelper.getAllRealmObjects()
 		let shiftedObjects = realmObjects[idToDelete...realmObjects.count - 1]
@@ -93,7 +91,11 @@ class RealmHelper {
 			realm.delete(objectsToDelete)
 		}
 		
-		RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: id)
+		let newObjects = RealmHelper.getAllRealmObjects()
+		if newObjects.count != 0 && id != newObjects.count {
+			RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: id)
+		}
+		
 	}
 	
 	static func deleteAllModels() {
