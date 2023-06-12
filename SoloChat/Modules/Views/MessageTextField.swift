@@ -32,11 +32,6 @@ final class MessageTextField: UITextField {
 		layer.cornerRadius = 10
 		layer.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 		
-//		layer.shadowColor = UIColor.black.cgColor
-//		layer.shadowRadius = 10
-//		layer.shadowOpacity = 0.3
-//		layer.shadowOffset = CGSize(width: 20, height: 15)
-		
 		attributedPlaceholder = NSAttributedString(string: placeholder,
 												   attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
 		font = .boldSystemFont(ofSize: 18)

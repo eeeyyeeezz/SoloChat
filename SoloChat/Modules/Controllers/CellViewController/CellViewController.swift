@@ -132,10 +132,9 @@ class CellViewController: UIViewController {
 	}
 	
 	@objc private func deleteMessageCell() {
-		debugPrint("DELETE CELL")
 		/// Передача ID для удаления модели в MainViewController
 		let userInfo = [Constants.deleteCell.rawValue: cellID]
-		debugPrint(userInfo)
+		debugPrint("DELETE CELL", userInfo)
 		NotificationCenter.default.post(name: .deleteCell, object: nil, userInfo: userInfo)
 		navigationController?.popViewController(animated: true)
 	}

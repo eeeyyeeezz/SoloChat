@@ -73,7 +73,7 @@ class RealmHelper {
 		}
 		
 		let newObjects = RealmHelper.getAllRealmObjects()
-		if newObjects.count != 0 && id != newObjects.count {
+		if newObjects.count != 0 && id != newObjects.count && id > 0 {
 			RealmHelper.updateAllRealmObjectsIdAfterDelete(realmObjects: newObjects, idToDelete: id)
 		}
 		
@@ -81,17 +81,19 @@ class RealmHelper {
 	
 	/// Обновить каждую ID у объектов Realm для того чтобы отсортировать правильно
 	/// Вызывать ТОЛЬКО после удаления одного объекта
-	/// Передавать опционал нужно из-за дебага
-	/// Если удаляем последний (или первый в стеке) элемент в таблице - ничего не надо менять и выходим из функции
 	private static func updateAllRealmObjectsIdAfterDelete(realmObjects: Results<MessageModel>, idToDelete: Int) {
 		let realm = try! Realm()
-		let shiftedObjects = realmObjects[idToDelete...realmObjects.count - 1]
+		let upperRange = realmObjects.count - 1
 		
-		shiftedObjects.forEach { object in
-			if object.id != 0 {
-				try! realm.write {
-					debugPrint("TEST NEW OBJECT \(object.id): \(object.message), OBJECTS TO SHIFT COUNT \(shiftedObjects.count)")
-					object.id -= 1
+		if idToDelete >= upperRange {
+			let shiftedObjects = realmObjects[idToDelete...upperRange]
+			
+			shiftedObjects.forEach { object in
+				if object.id != 0 {
+					try! realm.write {
+						debugPrint("TEST NEW OBJECT \(object.id): \(object.message), OBJECTS TO SHIFT COUNT \(shiftedObjects.count)")
+						object.id -= 1
+					}
 				}
 			}
 		}
