@@ -65,16 +65,17 @@ class RealmHelper {
 	/// Вызывать ТОЛЬКО после удаления одного объекта
 	/// Передавать опционал нужно из-за дебага
 	/// Если удаляем последний (или первый в стеке) элемент в таблице - ничего не надо менять и выходим из функции
-	static func updateAllRealmObjectsIdAfterDelete(idToDelete: Int?) {
+	static func updateAllRealmObjectsIdAfterDelete(idToDelete: Int) {
+		if RealmHelper.getAllRealmObjects().count == 0 { return }
+		
 		let realm = try! Realm()
 		let realmObjects = RealmHelper.getAllRealmObjects()
-		if let idToDelete = idToDelete {
-			guard idToDelete != realmObjects.count else { debugPrint("TEST NO DELETE") ; return}
-		}
-		realmObjects.forEach { object in
+		let shiftedObjects = realmObjects[idToDelete...realmObjects.count - 1]
+		
+		shiftedObjects.forEach { object in
 			if object.id != 0 {
 				try! realm.write {
-					debugPrint("TEST NEW OBJECT \(object.id): \(object.message), OBJECTS TO SHIFT COUNT \(realmObjects.count)")
+					debugPrint("TEST NEW OBJECT \(object.id): \(object.message), OBJECTS TO SHIFT COUNT \(shiftedObjects.count)")
 					object.id -= 1
 				}
 			}

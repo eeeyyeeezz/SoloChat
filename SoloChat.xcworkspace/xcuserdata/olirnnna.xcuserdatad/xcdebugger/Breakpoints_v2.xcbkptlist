@@ -78,8 +78,8 @@
             filePath = "SoloChat/Modules/Model/Realm/RealmHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "deleteModelById(by:)"
             landmarkType = "7">
             <Locations>
@@ -112,6 +112,84 @@
                   startingLineNumber = "84"
                   endingLineNumber = "84"
                   offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "50A02210-7600-4AA5-9E67-07F27FDA1810"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoloChat/Modules/Model/Realm/RealmHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "updateAllRealmObjectsIdAfterDelete(idToDelete:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "50A02210-7600-4AA5-9E67-07F27FDA1810 - d8087f0f1c82c26f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SoloChat.RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: Swift.Int) -&gt; ()"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Model/Realm/RealmHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "772">
+               </Location>
+               <Location
+                  uuid = "50A02210-7600-4AA5-9E67-07F27FDA1810 - ef2db9b6358afb68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SoloChat.MessageModel) -&gt; () in static SoloChat.RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: Swift.Int) -&gt; ()"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Model/Realm/RealmHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "50A02210-7600-4AA5-9E67-07F27FDA1810 - d8087f0f1c82c26f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SoloChat.RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: Swift.Int) -&gt; ()"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Model/Realm/RealmHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "788">
+               </Location>
+               <Location
+                  uuid = "50A02210-7600-4AA5-9E67-07F27FDA1810 - ef2db9b6358afb68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SoloChat.MessageModel) -&gt; () in static SoloChat.RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: Swift.Int) -&gt; ()"
+                  moduleName = "SoloChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olirnnna/Desktop/SoloChat/SoloChat/Modules/Model/Realm/RealmHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "104">
                </Location>
             </Locations>
          </BreakpointContent>

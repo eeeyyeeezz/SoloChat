@@ -10,13 +10,6 @@ import UIKit
 extension MainViewController {
 	
 	func setupConstraints() {
-//		NSLayoutConstraint.activate([
-//			scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-//			scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//			scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//			scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//		])
-		
 		testLabelTopConstraint = testTaskLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
 		NSLayoutConstraint.activate([
 			testLabelTopConstraint,
@@ -40,7 +33,6 @@ extension MainViewController {
 		
 		NSLayoutConstraint.activate([
 			lightModeSwitch.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -5),
-//			lightModeSwitch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 			lightModeSwitch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
 		])
 	}

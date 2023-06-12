@@ -37,7 +37,7 @@ final class MainViewController: UIViewController {
 	
 	lazy var debugDeleteButton: UIButton = {
 		let button = UIButton(frame: CGRect(x: 300, y: 35, width: 50, height: 35))
-		button.isHidden = false
+		button.isHidden = true
 		button.layer.cornerRadius = 10
 		button.addTarget(self, action: #selector(debugButtonDeleteAll), for: .touchUpInside)
 		button.setTitle("DEL", for: .normal)
@@ -209,8 +209,7 @@ extension MainViewController {
 		let realmObjects = RealmHelper.getAllRealmObjects()
 		realmObjects.forEach { object in
 			models.result.remove(at: object.id)
-//			tableView.deleteRows(at: [IndexPath(row: object.id, section: 0)], with: .automatic)
-			RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: nil)
+//			RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: nil)
 			tableView.reloadData()
 		}
 		RealmHelper.deleteAllModels()
