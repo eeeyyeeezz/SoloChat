@@ -73,6 +73,14 @@ class CellViewController: UIViewController {
 		messageLabel.textColor = lightMode ? .white : .black
 		timeLabel.textColor = lightMode ? .white : .black
 		
+		/// Выставление текущего времени
+		/// Можно приколоться и выставлять согласно каждой ячейки
+		/// Но я не хочу
+		let formatter = DateFormatter()
+		formatter.timeStyle = .short
+		let time = formatter.string(from: Date.now)
+		timeLabel.text = time
+		
 		addSubviews()
 		setupConstraints()
 		loadImage()

@@ -7,12 +7,6 @@
 
 import RealmSwift
 
-enum MessageEnum {
-	case id
-	case message
-	case time
-}
-
 class RealmHelper {
 	
 	// Получить поле Реалма (не весь объект)

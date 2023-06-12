@@ -7,14 +7,6 @@
 
 import UIKit
 
-protocol Coordinator {
-	func getAnimator() -> Animator
-	func getTextField() -> MessageTextField
-	func getMainViewController() -> MainViewController
-	func getCellViewController(_ cellID: Int, _ message: String) -> CellViewController
-	func getTableView(frame: CGRect, style: UITableView.Style) -> MessageTableView
-}
-
 class MainCoordinator: Coordinator {
 	
 	func getTextField() -> MessageTextField {

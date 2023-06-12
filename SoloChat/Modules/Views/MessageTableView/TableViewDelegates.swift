@@ -42,15 +42,23 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 				debugPrint("FETCH DATA \(indexPath.row) \(models.result.count)")
 				fetchData()
 			}
+			/// Темная тема
 			let lightMode = UserDefaults.standard.bool(forKey: Constants.switcher.rawValue)
 			cell.backgroundColor = lightMode ? .black : .white
 			cell.messageLabel.textColor = lightMode ? .white : .black
 			cell.timeLabel.textColor = lightMode ? .white : .black
 
+			/// Сообщение и время
 			let message = models.result[indexPath.row]
-			let time = "12:34"
+			
+			let formatter = DateFormatter()
+			formatter.timeStyle = .short
+			let time = formatter.string(from: Date.now)
+
 			cell.messageLabel.text = "\(indexPath.row): " + message
 			cell.timeLabel.text = time
+			
+			/// Анимирование 0й ячейки
 			animator.animate(cell: cell, at: indexPath, in: tableView)
 			return cell
 		}
