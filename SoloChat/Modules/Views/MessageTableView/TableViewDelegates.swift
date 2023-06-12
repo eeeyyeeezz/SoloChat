@@ -26,8 +26,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 	/// Переход на CellViewController
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		debugPrint("DIDSELECT", indexPath.row)
-		let vc = coordinator.getCellViewController(indexPath.row, models.result[indexPath.row])
-		navigationController?.pushViewController(vc, animated: true)
+		/// Ограничение нужно в случае отсутствия интернета
+		if !models.result.isEmpty {
+			let vc = coordinator.getCellViewController(indexPath.row, models.result[indexPath.row])
+			navigationController?.pushViewController(vc, animated: true)
+		}
 	}
 
 	
