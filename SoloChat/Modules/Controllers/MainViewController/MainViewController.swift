@@ -97,14 +97,17 @@ extension MainViewController {
 	func fetchData() {
 		NetworkManager.parseAPI { [weak self] result in
 			guard let self = self else { return }
+			DispatchQueue.main.async {
+				self.tableView.footerView.isHidden = false
+			}
 			switch result {
 			case .success(let data):
 				/// Если приходит пустой Result значит мы дошли до конца и дальше не надо парсить
 				if data.result.isEmpty { debugPrint("END OF FETCH LIST"); return }
 				models.result.append(contentsOf: data.result)
 				DispatchQueue.main.async {
+					self.tableView.footerView.isHidden = true
 					self.tableView.reloadSections(IndexSet(integersIn: 0...0), with: .fade)
-//					self.tableView.reloadData()
 				}
 			case .failure(_):
 				/// В случае failure вызывать функцию повторно
@@ -237,9 +240,6 @@ extension MainViewController: UITextFieldDelegate {
 			
 			// Push новых данные в Realm + добавление в начала стека
 			RealmHelper.pushToRealm(message: text, time: "\(hours):\(minutes)")
-			/// Оно начало тут ломаться внезапно вопрос почему а главное зачем?
-//			tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-//			tableView.reloadSections(IndexSet(integersIn: 0...0), with: .automatic)
 			tableView.reloadData()
 		}
 		textField.text = nil

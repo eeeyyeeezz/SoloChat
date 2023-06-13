@@ -9,6 +9,15 @@ import UIKit
 
 final class MessageTableView: UITableView {
 	
+	lazy var footerView: UIView = {
+		let view = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 40))
+		let activityIndicator = UIActivityIndicatorView(style: .medium)
+		activityIndicator.startAnimating()
+		view.addSubview(activityIndicator)
+		activityIndicator.center = view.center
+		return view
+	}()
+	
 	override init(frame: CGRect, style: UITableView.Style) {
 		super.init(frame: frame, style: style)
 		backgroundColor = .white
@@ -17,6 +26,7 @@ final class MessageTableView: UITableView {
 		separatorStyle = UITableViewCell.SeparatorStyle.none
 		register(MessageCell.self, forCellReuseIdentifier: MessageCell.identifier)
 		register(PlugCell.self, forCellReuseIdentifier: PlugCell.identifier)
+		tableFooterView = footerView
 		translatesAutoresizingMaskIntoConstraints = false
 		
 	}

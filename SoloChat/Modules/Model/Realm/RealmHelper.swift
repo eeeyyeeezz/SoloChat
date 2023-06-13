@@ -84,10 +84,10 @@ class RealmHelper {
 	private static func updateAllRealmObjectsIdAfterDelete(realmObjects: Results<MessageModel>, idToDelete: Int) {
 		let realm = try! Realm()
 		let upperRange = realmObjects.count - 1
-		
+
 		if idToDelete >= upperRange {
 			let shiftedObjects = realmObjects[idToDelete...upperRange]
-			
+
 			shiftedObjects.forEach { object in
 				if object.id != 0 {
 					try! realm.write {
@@ -98,6 +98,22 @@ class RealmHelper {
 			}
 		}
 	}
+	
+//	private static func updateAllRealmObjectsIdAfterDelete(realmObjects: Results<MessageModel>, idToDelete: Int) {
+//		let realm = try! Realm()
+//
+//		realm.beginWrite()
+//
+//		/// Перенумерация id оставшихся объектов
+//		let objectsToUpdate = RealmHelper.getAllRealmObjects().filter("id > %@", idToDelete)
+//		for object in objectsToUpdate {
+//			object.id -= 1
+//		}
+//
+//		// Завершение транзакции Realm
+//		try! realm.commitWrite()
+//	}
+	
 	
 	static func deleteAllModels() {
 		let realm = try! Realm()
