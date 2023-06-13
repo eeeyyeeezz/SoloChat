@@ -37,7 +37,7 @@ final class MainViewController: UIViewController {
 	
 	lazy var debugDeleteButton: UIButton = {
 		let button = UIButton(frame: CGRect(x: 300, y: 35, width: 50, height: 35))
-		button.isHidden = true
+		button.isHidden = false
 		button.layer.cornerRadius = 10
 		button.addTarget(self, action: #selector(debugButtonDeleteAll), for: .touchUpInside)
 		button.setTitle("DEL", for: .normal)
@@ -104,9 +104,9 @@ extension MainViewController {
 			case .success(let data):
 				/// Если приходит пустой Result значит мы дошли до конца и дальше не надо парсить
 				if data.result.isEmpty { debugPrint("END OF FETCH LIST"); return }
-				models.result.append(contentsOf: data.result)
 				DispatchQueue.main.async {
 					self.tableView.footerView.isHidden = true
+					self.models.result.append(contentsOf: data.result)
 					self.tableView.reloadSections(IndexSet(integersIn: 0...0), with: .fade)
 				}
 			case .failure(_):

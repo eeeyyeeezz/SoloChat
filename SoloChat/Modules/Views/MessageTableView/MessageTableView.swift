@@ -10,14 +10,15 @@ import UIKit
 final class MessageTableView: UITableView {
 	
 	lazy var footerView: UIView = {
-		let view = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 40))
-		let activityIndicator = UIActivityIndicatorView(style: .medium)
+		let view = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 50))
+		let activityIndicator = UIActivityIndicatorView(style: .large)
 		activityIndicator.startAnimating()
 		view.addSubview(activityIndicator)
+		view.backgroundColor = #colorLiteral(red: 0.8929398656, green: 0.8929398656, blue: 0.8929398656, alpha: 1)
 		activityIndicator.center = view.center
 		return view
 	}()
-	
+
 	override init(frame: CGRect, style: UITableView.Style) {
 		super.init(frame: frame, style: style)
 		backgroundColor = .white

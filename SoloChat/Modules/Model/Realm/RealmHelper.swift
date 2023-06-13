@@ -46,13 +46,11 @@ class RealmHelper {
 	// Сохранить в Realm, но в конец, id высчитается сам
 	static func pushToRealm(message: String, time: String) {
 		let realm = try! Realm()
-		let realmObjects = RealmHelper.getAllRealmObjects()
-		let id = realmObjects.count
+		let id = RealmHelper.getAllRealmObjects().count
 		let model = MessageModel(id: id, message: message, time: time)
 		try! realm.write {
 			realm.add(model)
 		}
-		debugPrint("PUSH REALM", realmObjects.count)
 	}
 	
 	/// Удалить объект по id и сместить остальные id
@@ -81,38 +79,38 @@ class RealmHelper {
 	
 	/// Обновить каждую ID у объектов Realm для того чтобы отсортировать правильно
 	/// Вызывать ТОЛЬКО после удаления одного объекта
-	private static func updateAllRealmObjectsIdAfterDelete(realmObjects: Results<MessageModel>, idToDelete: Int) {
-		let realm = try! Realm()
-		let upperRange = realmObjects.count - 1
-
-		if idToDelete >= upperRange {
-			let shiftedObjects = realmObjects[idToDelete...upperRange]
-
-			shiftedObjects.forEach { object in
-				if object.id != 0 {
-					try! realm.write {
-						debugPrint("TEST NEW OBJECT \(object.id): \(object.message), OBJECTS TO SHIFT COUNT \(shiftedObjects.count)")
-						object.id -= 1
-					}
-				}
-			}
-		}
-	}
-	
 //	private static func updateAllRealmObjectsIdAfterDelete(realmObjects: Results<MessageModel>, idToDelete: Int) {
 //		let realm = try! Realm()
+//		let upperRange = realmObjects.count - 1
 //
-//		realm.beginWrite()
+//		if idToDelete >= upperRange {
+//			let shiftedObjects = realmObjects[idToDelete...upperRange]
 //
-//		/// Перенумерация id оставшихся объектов
-//		let objectsToUpdate = RealmHelper.getAllRealmObjects().filter("id > %@", idToDelete)
-//		for object in objectsToUpdate {
-//			object.id -= 1
+//			shiftedObjects.forEach { object in
+//				if object.id != 0 {
+//					try! realm.write {
+//						debugPrint("TEST NEW OBJECT \(object.id): \(object.message), OBJECTS TO SHIFT COUNT \(shiftedObjects.count)")
+//						object.id -= 1
+//					}
+//				}
+//			}
 //		}
-//
-//		// Завершение транзакции Realm
-//		try! realm.commitWrite()
 //	}
+	
+	private static func updateAllRealmObjectsIdAfterDelete(realmObjects: Results<MessageModel>, idToDelete: Int) {
+		let realm = try! Realm()
+
+		realm.beginWrite()
+
+		/// Перенумерация id оставшихся объектов
+		let objectsToUpdate = RealmHelper.getAllRealmObjects().filter("id > %@", idToDelete)
+		for object in objectsToUpdate {
+			object.id -= 1
+		}
+
+		// Завершение транзакции Realm
+		try! realm.commitWrite()
+	}
 	
 	
 	static func deleteAllModels() {
