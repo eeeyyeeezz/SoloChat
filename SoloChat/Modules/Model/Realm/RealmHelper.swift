@@ -70,8 +70,9 @@ class RealmHelper {
 			realm.delete(objectsToDelete)
 		}
 		
-		let newObjects = RealmHelper.getAllRealmObjects()
-		if newObjects.count != 0 && id != newObjects.count && id > 0 {
+		/// Если модель лежит в реалме то удалить
+		if id >= 0 {
+			let newObjects = RealmHelper.getAllRealmObjects()
 			RealmHelper.updateAllRealmObjectsIdAfterDelete(realmObjects: newObjects, idToDelete: id)
 		}
 		
@@ -79,24 +80,6 @@ class RealmHelper {
 	
 	/// Обновить каждую ID у объектов Realm для того чтобы отсортировать правильно
 	/// Вызывать ТОЛЬКО после удаления одного объекта
-//	private static func updateAllRealmObjectsIdAfterDelete(realmObjects: Results<MessageModel>, idToDelete: Int) {
-//		let realm = try! Realm()
-//		let upperRange = realmObjects.count - 1
-//
-//		if idToDelete >= upperRange {
-//			let shiftedObjects = realmObjects[idToDelete...upperRange]
-//
-//			shiftedObjects.forEach { object in
-//				if object.id != 0 {
-//					try! realm.write {
-//						debugPrint("TEST NEW OBJECT \(object.id): \(object.message), OBJECTS TO SHIFT COUNT \(shiftedObjects.count)")
-//						object.id -= 1
-//					}
-//				}
-//			}
-//		}
-//	}
-	
 	private static func updateAllRealmObjectsIdAfterDelete(realmObjects: Results<MessageModel>, idToDelete: Int) {
 		let realm = try! Realm()
 
