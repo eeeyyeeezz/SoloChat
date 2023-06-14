@@ -32,12 +32,9 @@
 		4E9E5BD62A34832E00FFC37B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD52A34832E00FFC37B /* Extensions.swift */; };
 		4E9E5BD82A3493FE00FFC37B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD72A3493FE00FFC37B /* Constants.swift */; };
 		4E9E5BDA2A34A8E600FFC37B /* LightModeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E5BD92A34A8E600FFC37B /* LightModeEnum.swift */; };
-		8135F88008303499C5CE73F0 /* Pods_SoloChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093D479080BEF64026EEE576 /* Pods_SoloChat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		093D479080BEF64026EEE576 /* Pods_SoloChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoloChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AC70D4D6C3E2EA1DD65675C /* Pods-SoloChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoloChat.debug.xcconfig"; path = "Target Support Files/Pods-SoloChat/Pods-SoloChat.debug.xcconfig"; sourceTree = "<group>"; };
 		4E18590B2A32E2CF002BF48C /* SoloChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoloChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E18590E2A32E2CF002BF48C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E1859102A32E2CF002BF48C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +62,6 @@
 		4E9E5BD52A34832E00FFC37B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4E9E5BD72A3493FE00FFC37B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4E9E5BD92A34A8E600FFC37B /* LightModeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightModeEnum.swift; sourceTree = "<group>"; };
-		768935A9FC5A3EA5F4F255C0 /* Pods-SoloChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoloChat.release.xcconfig"; path = "Target Support Files/Pods-SoloChat/Pods-SoloChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8135F88008303499C5CE73F0 /* Pods_SoloChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +80,6 @@
 			children = (
 				4E18590D2A32E2CF002BF48C /* SoloChat */,
 				4E18590C2A32E2CF002BF48C /* Products */,
-				F56236C3E6672B6A94B155F2 /* Pods */,
-				DAD84B99993E5C8CB150DA53 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,23 +212,6 @@
 			path = CellViewController;
 			sourceTree = "<group>";
 		};
-		DAD84B99993E5C8CB150DA53 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				093D479080BEF64026EEE576 /* Pods_SoloChat.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F56236C3E6672B6A94B155F2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3AC70D4D6C3E2EA1DD65675C /* Pods-SoloChat.debug.xcconfig */,
-				768935A9FC5A3EA5F4F255C0 /* Pods-SoloChat.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -243,11 +219,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E18591F2A32E2CF002BF48C /* Build configuration list for PBXNativeTarget "SoloChat" */;
 			buildPhases = (
-				830BB4687C06D4B819A27A86 /* [CP] Check Pods Manifest.lock */,
 				4E1859072A32E2CF002BF48C /* Sources */,
 				4E1859082A32E2CF002BF48C /* Frameworks */,
 				4E1859092A32E2CF002BF48C /* Resources */,
-				9215D0A01A875FFD3C4A72C6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,48 +276,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		830BB4687C06D4B819A27A86 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SoloChat-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9215D0A01A875FFD3C4A72C6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SoloChat/Pods-SoloChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SoloChat/Pods-SoloChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SoloChat/Pods-SoloChat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E1859072A32E2CF002BF48C /* Sources */ = {
@@ -506,7 +438,6 @@
 		};
 		4E1859202A32E2CF002BF48C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AC70D4D6C3E2EA1DD65675C /* Pods-SoloChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -535,7 +466,6 @@
 		};
 		4E1859212A32E2CF002BF48C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 768935A9FC5A3EA5F4F255C0 /* Pods-SoloChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -35,16 +35,6 @@ final class MainViewController: UIViewController {
 		return label
 	}()
 	
-	lazy var debugDeleteButton: UIButton = {
-		let button = UIButton(frame: CGRect(x: 300, y: 35, width: 50, height: 35))
-		button.isHidden = false
-		button.layer.cornerRadius = 10
-		button.addTarget(self, action: #selector(debugButtonDeleteAll), for: .touchUpInside)
-		button.setTitle("DEL", for: .normal)
-		button.backgroundColor = .red
-		return button
-	}()
-	
 	lazy var lightModeSwitch: UISwitch = {
 		let switcher = UISwitch()
 		switcher.isOn = false
@@ -79,8 +69,6 @@ final class MainViewController: UIViewController {
 	}
 	
 	private func setupViewController() {
-		/// Добавляем данные из Realm в локальный Storage. Нужно добавлять перевернутый из-за перевернутого tableView
-		appendRealmObjectsInReverse()
 		fetchData()
 		setupBinding()
 		addSubviews()
@@ -118,15 +106,6 @@ extension MainViewController {
 	}
 	
 	// MARK: Private Methods
-	private func appendRealmObjectsInReverse() {
-		var newModel = [String]()
-		let realmObjects = RealmHelper.getAllRealmObjects().reversed()
-		realmObjects.forEach { realmModel in
-			newModel.append(realmModel.message)
-		}
-		models.result.insert(contentsOf: newModel, at: 0)
-	}
-	
 	private func setupBinding() {
 		title = "Тестовое Задание"
 		view.backgroundColor = .white
@@ -136,7 +115,6 @@ extension MainViewController {
 	}
 	
 	private func addSubviews() {
-		view.addSubview(debugDeleteButton)
 		view.addSubview(lightModeSwitch)
 		view.addSubview(testTaskLabel)
 		view.addSubview(textField)
@@ -173,9 +151,6 @@ extension MainViewController {
 		if let id = notification.userInfo?[Constants.deleteCell.rawValue] as? Int {
 			print("Received id: \(id)")
 			models.result.remove(at: id)
-			/// Из-за перевернутой таблицы нужно заниматься вот таким вот
-			let idForRealm = (RealmHelper.getAllRealmObjects().count - 1) - id
-			RealmHelper.deleteModelById(by: idForRealm)
 			tableView.reloadSections(IndexSet(0...0), with: .automatic)
 		}
 	}
@@ -207,23 +182,6 @@ extension MainViewController {
 		view.endEditing(true)
 	}
 	
-	/// Это для дебага
-	@objc func debugButtonDeleteAll() {
-		let realmObjects = RealmHelper.getAllRealmObjects()
-		realmObjects.forEach { object in
-			models.result.remove(at: object.id)
-//			RealmHelper.updateAllRealmObjectsIdAfterDelete(idToDelete: nil)
-			tableView.reloadData()
-		}
-		RealmHelper.deleteAllModels()
-	}
-	
-	/// Обновить значения у Models после удаления каких-либо данных для того чтобы ID нормально стояли
-	/// Вызывать ТОЛЬКО после удаления какого-либо элемента
-	/// Иначе ячейки будут располагаться неправильно и возможен UB
-	private func updateAllModelsValuesAfterDelete() {
-		
-	}
 }
 
 
@@ -238,8 +196,6 @@ extension MainViewController: UITextFieldDelegate {
 			let minutes = (Calendar.current.component(.minute, from: today))
 			models.result.insert(contentsOf: [text], at: 0)
 			
-			// Push новых данные в Realm + добавление в начала стека
-			RealmHelper.pushToRealm(message: text, time: "\(hours):\(minutes)")
 			tableView.reloadData()
 		}
 		textField.text = nil
